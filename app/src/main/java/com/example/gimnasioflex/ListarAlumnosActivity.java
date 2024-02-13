@@ -6,10 +6,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
-<<<<<<< HEAD
+
 import android.graphics.Color;
-=======
->>>>>>> listado_deudores
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -93,4 +91,5 @@ public class ListarAlumnosActivity extends AppCompatActivity implements ListAdap
         intent.putExtra(EXTRA_PERSONA, (Serializable) adapter.getItem(position));
         startActivity(intent);
     }
+
 }

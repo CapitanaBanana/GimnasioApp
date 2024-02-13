@@ -174,4 +174,35 @@ public class DBHelper extends SQLiteOpenHelper {
         cursor.close();
         return p;
     }
+    public Boolean updateClientData(String name, String ape, String dni){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(KEY_NAME, name);
+        values.put(KEY_APE, ape);
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE DNI = ?", new String [] {dni});
+        if(cursor.getCount()>0){
+            long res= db.update(TABLE_NAME,values,"DNI=?", new String[] {dni});
+            if(res==-1)
+                return false;
+            else
+                return true;
+        }
+        else{
+            return false;
+        }
+    }
+    public Boolean deleteClient(String dni){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE DNI = ?", new String [] {dni});
+        if(cursor.getCount()>0){
+            long res= db.delete(TABLE_NAME,"DNI=?", new String[] {dni});
+            if(res==-1)
+                return false;
+            else
+                return true;
+        }
+        else{
+            return false;
+        }
+    }
 }

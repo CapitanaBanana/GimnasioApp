@@ -2,6 +2,16 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="rojo_oscuro">#8B0000</color>
+    <color name="casi_blanco">#D3D3D3</color>
+    <color name="transparente">#00000000</color>
+    <color name="gris_traslucido">#C6131313</color>
+    <color name="gris_traslucido2">#52131313</color>
+    <color name="casi_negro">#1A1B1B</color>
     <color name="gris">#808080</color>
+    <color name="filtro_gris">#C3373737</color>
+    <color name="filtro_rojo">#B35A0000</color>
+    <color name="filtro_rojo_fondo">#5A0000</color>
+    <color name="colorPrimary">#8C0000</color>
+    <color name="colorPrimaryDark">#810000</color>
+    <color name="colorAccent">#BD4040</color>
 </resources>

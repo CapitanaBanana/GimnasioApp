@@ -25,17 +25,19 @@
                 android:id="@+id/NombreCompleto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textSize="20dp"
                 android:ellipsize="end"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
-                android:textColor="#000000"
+                android:textColor="@color/casi_blanco"
                 tools:text="@tools:sample/lorem" />
 
             <TextView
                 android:id="@+id/DNI"
                 android:layout_width="wrap_content"
+                android:textSize="15dp"
                 android:layout_height="20dp"
                 android:ellipsize="end"
-                android:textColor="#000000"
+                android:textColor="@color/casi_blanco"
                 tools:text="@tools:sample/lorem/random" />
         </LinearLayout>
     </LinearLayout>

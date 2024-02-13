@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:alpha="0.5"
-        android:background="#FF3030" >
+        android:background="@color/filtro_rojo_fondo" >
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
@@ -25,7 +25,7 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="0dp"
-            android:background="#80D1D0D0"
+            android:background="@color/gris_traslucido"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
@@ -100,28 +100,28 @@
 
         <EditText
             android:id="@+id/txtDNI"
+            android:background="@drawable/rounded_corners"
+            android:textColorHint="@color/gris"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
             android:layout_weight="1"
-            android:background="@drawable/rounded_corners"
-            android:ems="10"
             android:hint="DNI"
-            android:maxLength="8"
             android:inputType="number"
+            android:maxLength="8"
             android:padding="10dp" />
 
         <Button
-            android:onClick="verificarExistencia"
+            style="@style/Button.MyApp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
             android:layout_weight="1"
-            android:backgroundTint="#FF0000"
-            android:text="Aceptar"
-            android:textColor="#FFFFFF" />
+            android:hapticFeedbackEnabled="true"
+            android:onClick="verificarExistencia"
+            android:text="Aceptar" />
 
 
     </LinearLayout>

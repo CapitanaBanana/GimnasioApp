@@ -1,15 +1,32 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.GimnasioFlex" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="android:colorPrimary">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/gris</item>
     </style>
 
     <style name="Theme.GimnasioFlex" parent="Base.Theme.GimnasioFlex" />
-    <style name="TemaDialogo" parent="Theme.AppCompat.Dialog">
+    <style name="TemaDialogo" parent="Base.Theme.GimnasioFlex">
         <item name="android:windowNoTitle">true</item>
-        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowBackground">@color/transparente</item>
         <item name="android:windowIsFloating">true</item>
         <!-- Otros estilos y atributos según sea necesario -->
     </style>
+    <style name="ButtonStyle" parent="Widget.AppCompat.CompoundButton.RadioButton">
+        <item name="android:background">@drawable/radio_button_selector</item>
+        <item name="android:button">@null</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+    <style name="Button.MyApp" parent="Widget.AppCompat.Button">
+        <item name="android:textColor">@color/casi_blanco</item> <!-- Cambia este valor al color deseado -->
+        <item name="backgroundTint">@color/colorPrimaryDark</item> <!-- Cambia este valor al color deseado para el fondo -->
+        <item name="android:background">@drawable/rounded_button</item>
+    </style>
+    <style name="TextView.MyApp" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/casi_blanco</item> <!-- Cambia este valor al color deseado -->
+        <item name="background">@drawable/rounded_corners</item>
+        <item name="hintTextColor">@color/gris</item>
+        <item name="android:textSize">16sp</item><!-- Cambia este valor al color deseado para el fondo -->
+    </style>
+
 </resources>

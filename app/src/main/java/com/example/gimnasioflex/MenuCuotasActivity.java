@@ -2,23 +2,37 @@ package com.example.gimnasioflex;
 
 import static com.example.gimnasioflex.ListarAlumnosActivity.EXTRA_PERSONA;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.Spanned;
+import android.text.TextWatcher;
+import android.text.style.ReplacementSpan;
+import android.util.Log;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.time.LocalDate;
+import java.time.chrono.ChronoLocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class MenuCuotasActivity extends AppCompatActivity {
     private Persona persona;
-    EditText fechaInicio;
-    DBHelper db;
+    private DatePicker fechaInicio;
+    private DBHelper db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,23 +41,27 @@ public class MenuCuotasActivity extends AppCompatActivity {
         if (intent != null && intent.hasExtra(EXTRA_PERSONA)) {
             persona = (Persona) intent.getSerializableExtra(EXTRA_PERSONA);
         }
+        fechaInicio = findViewById(R.id.datePicker);
+        TextView textView = findViewById(R.id.Nombre);
+        textView.setText(persona.getNom()+ " " + persona.getApe());
     }
-        @RequiresApi(api = Build.VERSION_CODES.O)
-        public void cuotaDosDias(View view){
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public void registrarCuota(View view){
+        RadioGroup radioGroup = findViewById(R.id.radioGroup);
+        int id= radioGroup.getCheckedRadioButtonId();
+        if(id==2131230727)
             agregarCuota("Dos Dias");
-        }
-        @RequiresApi(api = Build.VERSION_CODES.O)
-        public void cuotaTresDias(View view){
-            agregarCuota("Tres Dias");
-        }
-        @RequiresApi(api = Build.VERSION_CODES.O)
-        public void cuotaLibre(View view){
+        else if(id==2131230744)
+            agregarCuota("tres Dias");
+        else if (id==2131230732)
             agregarCuota("Libre");
-        }
+        else
+            Toast.makeText(MenuCuotasActivity.this, "Debe seleccionar un tipo de cuota!", Toast.LENGTH_SHORT).show();
+    }
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void agregarCuota(String tipo){
-        fechaInicio = findViewById(R.id.FechaInicio);
-        LocalDate inicio= LocalDate.parse(fechaInicio.getText().toString());
+        LocalDate inicio= LocalDate.of(fechaInicio.getYear(), fechaInicio.getMonth(), fechaInicio.getDayOfMonth());
         db = new DBHelper(MenuCuotasActivity.this);
         boolean check = db.addCuota(persona.getDni(), inicio, inicio.plusDays(30), tipo);
         if (check)

@@ -19,15 +19,14 @@
 
         <EditText
             android:id="@+id/NombreCompleto"
-            style="@style/Widget.AppCompat.AutoCompleteTextView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_weight="1"
             android:background="@drawable/rounded_corners"
-            android:padding="5dp"
-            android:textColor="#000000">
+            android:padding="10dp"
+            android:textColor="@color/casi_blanco">
 
         </EditText>
 
@@ -41,8 +40,8 @@
             android:layout_marginRight="5dp"
             android:layout_weight="1"
             android:background="@drawable/rounded_corners"
-            android:padding="5dp"
-            android:textColor="#000000">
+            android:padding="10dp"
+            android:textColor="@color/casi_blanco">
 
         </TextView>
 
@@ -56,12 +55,13 @@
             android:layout_marginRight="5dp"
             android:layout_weight="1"
             android:background="@drawable/rounded_corners"
-            android:padding="5dp"
-            android:textColor="#000000">
+            android:padding="10dp"
+            android:textColor="@color/casi_blanco">
 
         </TextView>
 
         <Button
+            style="@style/Button.MyApp"
             android:id="@+id/AgregarCuota"
             android:onClick="agregarCuota"
             android:layout_width="match_parent"

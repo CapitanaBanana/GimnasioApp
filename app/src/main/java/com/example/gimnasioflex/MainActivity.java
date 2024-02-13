@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
                 DBHelper db = new DBHelper(this);
                 ArrayList<Persona> data= db.fetchClient();
                 String finalDni = dni;
-                Persona p=data.stream().filter(persona->persona.getDni().equals(finalDni)).findAny().orElse(null);
+                Persona p= db.getPersonaPorDNI(dni);
                 if (p==null){
                     Toast.makeText(MainActivity.this, "El DNI ingresado no existe!", Toast.LENGTH_SHORT).show();
                 }

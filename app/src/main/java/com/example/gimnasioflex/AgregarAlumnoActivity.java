@@ -32,7 +32,8 @@ public class AgregarAlumnoActivity extends AppCompatActivity {
                 String dni = dniTxt.getText().toString();
                 if (dni.length() == 8)
                 {
-                    if(db.fetchClient().stream().anyMatch(persona->persona.getDni().equals(dni))){
+                    Persona p = db.getPersonaPorDNI(dni);
+                    if(p!=null){
                         Toast.makeText(AgregarAlumnoActivity.this, "El dni ingresado ya está en el sistema!", Toast.LENGTH_SHORT).show();
                     }
                     else{

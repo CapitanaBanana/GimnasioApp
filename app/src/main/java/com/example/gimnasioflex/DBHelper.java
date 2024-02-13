@@ -1,5 +1,6 @@
 package com.example.gimnasioflex;
 
+import android.app.Person;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -162,5 +163,15 @@ public class DBHelper extends SQLiteOpenHelper {
         }
         cursor.close();
         return arrayList;
+    }
+    public Persona getPersonaPorDNI(String dni){
+        SQLiteDatabase db =this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT Nombre,Apellido,DNI,Registro FROM "+ TABLE_NAME + " WHERE DNI = '" + dni + "'",null);
+        Persona p=null;
+        if (cursor.moveToFirst()) { // Mover el cursor al primer resultado si hay alguno
+            p = new Persona(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3));
+        }
+        cursor.close();
+        return p;
     }
 }

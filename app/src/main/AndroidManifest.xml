@@ -8,7 +8,7 @@
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@drawable/flex"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/flex"
         android:supportsRtl="true"
         android:theme="@style/Theme.GimnasioFlex"
         tools:targetApi="31">

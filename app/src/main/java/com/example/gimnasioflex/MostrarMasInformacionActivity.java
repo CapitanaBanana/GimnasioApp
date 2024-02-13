@@ -42,5 +42,6 @@ public class MostrarMasInformacionActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MenuCuotasActivity.class);
         intent.putExtra(EXTRA_PERSONA, persona);
         startActivity(intent);
+        finish();
     }
 }

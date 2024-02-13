@@ -29,8 +29,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         DBHelper db = new DBHelper(this);
-        db.addClient("juan","lopez","33333333");
-        db.addAsistencia("33333333");
     }
     public void verificarExistencia(View view){
         {

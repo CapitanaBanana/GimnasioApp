@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -28,21 +29,21 @@ public class MenuCuotasActivity extends AppCompatActivity {
         }
     }
         @RequiresApi(api = Build.VERSION_CODES.O)
-        public void cuotaDosDias(){
+        public void cuotaDosDias(View view){
             agregarCuota("Dos Dias");
         }
         @RequiresApi(api = Build.VERSION_CODES.O)
-        public void cuotaTresDias(){
+        public void cuotaTresDias(View view){
             agregarCuota("Tres Dias");
         }
         @RequiresApi(api = Build.VERSION_CODES.O)
-        public void cuotaLibre(){
+        public void cuotaLibre(View view){
             agregarCuota("Libre");
         }
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void agregarCuota(String tipo){
         fechaInicio = findViewById(R.id.FechaInicio);
-        LocalDate inicio= LocalDate.parse(fechaInicio.toString());
+        LocalDate inicio= LocalDate.parse(fechaInicio.getText().toString());
         db = new DBHelper(MenuCuotasActivity.this);
         boolean check = db.addCuota(persona.getDni(), inicio, inicio.plusDays(30), tipo);
         if (check)

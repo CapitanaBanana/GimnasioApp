@@ -79,10 +79,4 @@ public class MostrarMasInformacionActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
-    public void eliminarCliente(View view) {
-        Intent intent = new Intent(this, MenuCuotasActivity.class);
-        intent.putExtra(EXTRA_PERSONA, persona);
-        startActivity(intent);
-        finish();
-    }
 }

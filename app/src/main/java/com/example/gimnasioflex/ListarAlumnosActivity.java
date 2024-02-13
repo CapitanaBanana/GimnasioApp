@@ -31,6 +31,7 @@ public class ListarAlumnosActivity extends AppCompatActivity implements ListAdap
     private RecyclerView recyclerView;
     private DBHelper db = new DBHelper(this);
     private ArrayList<Persona> data;
+    private ArrayList<Persona> listaFiltrada;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,7 +66,7 @@ public class ListarAlumnosActivity extends AppCompatActivity implements ListAdap
             @Override
             public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
                 // Filtra la lista según el texto ingresado
-                ArrayList<Persona> listaFiltrada = filtrarLista(charSequence.toString());
+                listaFiltrada = filtrarLista(charSequence.toString());
                 adapter.update(ListarAlumnosActivity.this,listaFiltrada);
             }
 

@@ -40,7 +40,9 @@ public class MostrarMasInformacionActivity extends AppCompatActivity {
         DBHelper db = new DBHelper(this);
         ArrayList<LocalDate> data= db.fetchAsistencia(persona.getDni());
         TextView textView2 = findViewById(R.id.UltimaAsistencia);
-        textView2.setText(data.get(data.size()-1).format(formatter));
+        if (data.size()!=0){
+            textView2.setText(data.get(data.size()-1).format(formatter));
+        }
     }
 }
     public void agregarCuota(View view) {

@@ -43,9 +43,17 @@ public class MostrarMasInformacionActivity extends AppCompatActivity {
         if (data.size()!=0){
             textView2.setText(data.get(data.size()-1).format(formatter));
         }
+        else
+            textView2.setText("No hay visitas al gimnasio");
     }
 }
     public void agregarCuota(View view) {
+        Intent intent = new Intent(this, MenuCuotasActivity.class);
+        intent.putExtra(EXTRA_PERSONA, persona);
+        startActivity(intent);
+        finish();
+    }
+    public void eliminarCliente(View view) {
         Intent intent = new Intent(this, MenuCuotasActivity.class);
         intent.putExtra(EXTRA_PERSONA, persona);
         startActivity(intent);

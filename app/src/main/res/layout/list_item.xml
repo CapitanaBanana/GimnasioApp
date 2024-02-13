@@ -9,35 +9,36 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="7dp">
+        android:layout_marginBottom="10dp"
+        android:orientation="vertical">
 
         <LinearLayout
             android:id="@+id/Item"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/rounded_corners2"
-            android:padding="10dp"
             android:gravity="left"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="@color/filtro_rojo"
+            android:layout_marginBottom="5dp"
+            android:padding="10dp">
 
             <TextView
                 android:id="@+id/NombreCompleto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="20dp"
                 android:ellipsize="end"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
                 android:textColor="@color/casi_blanco"
+                android:textSize="20dp"
                 tools:text="@tools:sample/lorem" />
 
             <TextView
                 android:id="@+id/DNI"
                 android:layout_width="wrap_content"
-                android:textSize="15dp"
                 android:layout_height="20dp"
                 android:ellipsize="end"
                 android:textColor="@color/casi_blanco"
+                android:textSize="15dp"
                 tools:text="@tools:sample/lorem/random" />
         </LinearLayout>
     </LinearLayout>

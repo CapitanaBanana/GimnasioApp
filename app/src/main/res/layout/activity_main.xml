@@ -121,7 +121,7 @@
             android:layout_weight="1"
             android:hapticFeedbackEnabled="true"
             android:onClick="verificarExistencia"
-            android:text="Aceptar" />
+            android:text="Ingresar" />
 
 
     </LinearLayout>

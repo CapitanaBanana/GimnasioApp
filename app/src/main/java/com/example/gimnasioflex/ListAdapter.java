@@ -21,6 +21,10 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
     }
+    public void update(Context context, ArrayList<Persona> data){
+        this.mInflater = LayoutInflater.from(context);
+        this.mData = data;
+    }
 
     // inflates the row layout from xml when needed
     @Override

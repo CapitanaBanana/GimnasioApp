@@ -62,12 +62,13 @@
         </TextView>
 
         <Button
-            android:id="@+id/Cerrar"
+            android:id="@+id/AgregarCuota"
+            android:onClick="agregarCuota"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_weight="1"
-            android:text="Atras" />
+            android:text="Agregar Cuota" />
     </LinearLayout>
 
 

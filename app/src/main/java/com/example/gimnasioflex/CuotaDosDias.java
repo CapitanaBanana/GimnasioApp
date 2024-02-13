@@ -1,5 +1,7 @@
 package com.example.gimnasioflex;
 
+import android.widget.Toast;
+
 import java.time.LocalDate;
 
 public class CuotaDosDias extends Cuota{

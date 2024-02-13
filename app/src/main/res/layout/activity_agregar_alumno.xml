@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    tools:context=".AgregarAlumnoActivity">
+
+
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_corners_big"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <EditText
+            android:id="@+id/Nombre"
+            style="@style/Widget.AppCompat.AutoCompleteTextView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/rounded_corners"
+            android:hint="Nombre"
+            android:inputType="text|textPersonName"
+            android:padding="5dp"
+            android:textColor="#000000"
+            android:textColorHint="#757474">
+
+        </EditText>
+
+        <EditText
+            android:id="@+id/Apellido"
+            style="@style/Widget.AppCompat.AutoCompleteTextView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+
+            android:background="@drawable/rounded_corners"
+            android:hint="Apellido"
+            android:inputType="text|textPersonName"
+            android:padding="5dp"
+            android:textColor="#000000"
+            android:textColorHint="#757474"></EditText>
+
+        <EditText
+            android:id="@+id/DNI"
+            style="@style/Widget.AppCompat.AutoCompleteTextView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:allowUndo="false"
+            android:background="@drawable/rounded_corners"
+            android:hint="DNI"
+            android:maxLength="8"
+            android:inputType="number"
+            android:padding="5dp"
+            android:textColor="#000000"
+            android:textColorHint="#757474">
+
+        </EditText>
+
+        <Button
+            android:id="@+id/registrar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_weight="1"
+            android:text="Registrar" />
+    </LinearLayout>
+
+
+</RelativeLayout>

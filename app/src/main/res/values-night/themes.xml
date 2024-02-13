@@ -1,0 +1,21 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="AppTheme" parent="Theme.AppCompat.DayNight">
+        <!-- Personalizar color de la barra de acción (ActionBar) -->
+        <item name="colorPrimary">@color/rojo_oscuro</item>
+
+        <!-- Personalizar color de fondo de la barra de acción y otros elementos -->
+        <item name="colorPrimaryDark">@color/rojo_oscuro</item>
+
+        <!-- Personalizar color de texto de la barra de acción y otros elementos -->
+        <item name="android:textColorPrimary">@color/gris</item>
+
+        <!-- Personalizar color de texto de la aplicación -->
+        <item name="android:textColor">@color/gris</item>
+
+        <!-- Personalizar color de fondo de la aplicación -->
+        <item name="android:windowBackground">@color/gris</item>
+
+        <!-- ... Otras personalizaciones ... -->
+    </style>
+</resources>

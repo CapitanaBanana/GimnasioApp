@@ -12,7 +12,9 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -23,6 +25,7 @@ import java.util.ArrayList;
 public class MostrarMasInformacionActivity extends AppCompatActivity {
     public DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     private Persona persona;
+    private  DBHelper db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +40,7 @@ public class MostrarMasInformacionActivity extends AppCompatActivity {
         TextView textView1 = findViewById(R.id.FechaRegistro);
         textView1.setText(persona.getRegistro().format(formatter));
 
-        DBHelper db = new DBHelper(this);
+        db = new DBHelper(this);
         ArrayList<LocalDate> data= db.fetchAsistencia(persona.getDni());
         TextView textView2 = findViewById(R.id.UltimaAsistencia);
         if (data.size()!=0){
@@ -45,6 +48,29 @@ public class MostrarMasInformacionActivity extends AppCompatActivity {
         }
     }
 }
+
+    public void actualizarCliente(View view){
+        db=new DBHelper(this);
+        boolean res= db.updateClientData(persona.getNom(), persona.getApe(), persona.getDni());
+
+    }
+    public void eliminarCliente(View view){
+        db = new DBHelper(this);
+        Boolean res= db.deleteClient(persona.getDni());
+        if(res) {
+            Toast.makeText(this, "Cliente eliminado con exito!", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, ListarAlumnosActivity.class);
+            intent.putExtra("recreate", true);
+            startActivity(intent);
+            finish();
+        }
+        else
+            Toast.makeText(this,"El cliente no se pudo eliminar",Toast.LENGTH_SHORT).show();
+
+    }
+
+
+
     public void agregarCuota(View view) {
         Intent intent = new Intent(this, MenuCuotasActivity.class);
         intent.putExtra(EXTRA_PERSONA, persona);

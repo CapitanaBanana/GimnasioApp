@@ -26,7 +26,7 @@ public class Persona implements Serializable {
         return ape;
     }
 
-    public String getDni() {
+    public  String getDni() {
         return dni;
     }
 

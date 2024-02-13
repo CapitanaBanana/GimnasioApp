@@ -35,16 +35,20 @@ public class AgregarAlumnoActivity extends AppCompatActivity {
                     Persona p = db.getPersonaPorDNI(dni);
                     if(p!=null){
                         Toast.makeText(AgregarAlumnoActivity.this, "El dni ingresado ya está en el sistema!", Toast.LENGTH_SHORT).show();
+                        finish();
                     }
                     else{
-                    boolean check = db.addClient(nom, ape, dni);
-                    if (check)
-                        Toast.makeText(AgregarAlumnoActivity.this, "Cliente guardado con exito!", Toast.LENGTH_SHORT).show();
-                    else
-                        Toast.makeText(AgregarAlumnoActivity.this, "El cliente no se pudo guardar!", Toast.LENGTH_SHORT).show();
-                }}
+                        boolean check = db.addClient(nom, ape, dni);
+                        if (check)
+                            Toast.makeText(AgregarAlumnoActivity.this, "Cliente guardado con exito!", Toast.LENGTH_SHORT).show();
+                        else
+                            Toast.makeText(AgregarAlumnoActivity.this, "El cliente no se pudo guardar!", Toast.LENGTH_SHORT).show();
+                        finish();
+                    }
+                }
                 else
                     Toast.makeText(AgregarAlumnoActivity.this,"Datos Incorrectos", Toast.LENGTH_SHORT).show();
+
             }
         });
 

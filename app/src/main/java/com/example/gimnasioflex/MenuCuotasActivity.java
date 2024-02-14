@@ -33,6 +33,9 @@ public class MenuCuotasActivity extends AppCompatActivity {
     private Persona persona;
     private DatePicker fechaInicio;
     private DBHelper db;
+    RadioButton dosVeces;
+    RadioButton tresVeces;
+    RadioButton libre;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,18 +46,20 @@ public class MenuCuotasActivity extends AppCompatActivity {
         }
         fechaInicio = findViewById(R.id.datePicker);
         TextView textView = findViewById(R.id.Nombre);
-        textView.setText(persona.getNom()+ " " + persona.getApe());
+        textView.setText("Alumno: " + persona.getNom()+ " " + persona.getApe());
+
+        dosVeces=findViewById(R.id.DosVeces);
+        tresVeces = findViewById(R.id.TresVeces);
+        libre = findViewById(R.id.Libre);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void registrarCuota(View view){
-        RadioGroup radioGroup = findViewById(R.id.radioGroup);
-        int id= radioGroup.getCheckedRadioButtonId();
-        if(id==2131230727)
+        if(dosVeces.isChecked())
             agregarCuota("Dos Dias");
-        else if(id==2131230744)
+        else if(tresVeces.isChecked())
             agregarCuota("tres Dias");
-        else if (id==2131230732)
+        else if (libre.isChecked())
             agregarCuota("Libre");
         else
             Toast.makeText(MenuCuotasActivity.this, "Debe seleccionar un tipo de cuota!", Toast.LENGTH_SHORT).show();
@@ -68,6 +73,7 @@ public class MenuCuotasActivity extends AppCompatActivity {
             Toast.makeText(MenuCuotasActivity.this, "Cuota agregada con exito!", Toast.LENGTH_SHORT).show();
         else
             Toast.makeText(MenuCuotasActivity.this, "La cuota no se pudo registrar!", Toast.LENGTH_SHORT).show();
+        finish();
     }
 
 

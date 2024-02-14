@@ -72,6 +72,7 @@ public class ListarAlumnosActivity extends AppCompatActivity implements ListAdap
 
             @Override
             public void afterTextChanged(Editable editable) {
+
             }
         });
     }

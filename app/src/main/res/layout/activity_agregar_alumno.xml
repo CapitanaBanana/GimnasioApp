@@ -74,6 +74,7 @@
         </EditText>
 
         <Button
+            android:onClick="registrar"
             android:id="@+id/registrar"
             style="@style/Button.MyApp"
             android:layout_width="match_parent"

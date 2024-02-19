@@ -20,6 +20,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.gimnasioflex.DBHelper;
+import com.example.gimnasioflex.ListAdapter;
+import com.example.gimnasioflex.MostrarMasInformacionActivity;
+import com.example.gimnasioflex.Persona;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -67,7 +72,7 @@ public class ListarAlumnosActivity extends AppCompatActivity implements ListAdap
             public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
                 // Filtra la lista según el texto ingresado
                 listaFiltrada = filtrarLista(charSequence.toString());
-                adapter.update(ListarAlumnosActivity.this,listaFiltrada);
+                adapter.update(listaFiltrada);
             }
 
             @Override

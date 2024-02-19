@@ -43,13 +43,12 @@ public class MostrarMasInformacionActivity extends AppCompatActivity {
         db = new DBHelper(this);
         ArrayList<LocalDate> data= db.fetchAsistencia(persona.getDni());
         TextView textView2 = findViewById(R.id.UltimaAsistencia);
-        if (data.size()!=0){
-            textView2.setText(data.get(data.size()-1).format(formatter));
-        }
-        else
+        if (data.size() != 0) {
+            textView2.setText(data.get(data.size() - 1).format(formatter));
+        } else {
             textView2.setText("No hay visitas al gimnasio");
-    }
-}
+        }
+}}
 
     public void actualizarCliente(View view){
         db=new DBHelper(this);

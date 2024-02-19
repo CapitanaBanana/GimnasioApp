@@ -22,36 +22,31 @@ public class AgregarAlumnoActivity extends AppCompatActivity {
         dniTxt = findViewById(R.id.DNI);
         nomTxt = findViewById(R.id.Nombre);
         apeTxt = findViewById(R.id.Apellido);
-        regBtn = findViewById(R.id.registrar);
         db = new DBHelper(AgregarAlumnoActivity.this);
-        regBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String nom = nomTxt.getText().toString();
-                String ape = apeTxt.getText().toString();
-                String dni = dniTxt.getText().toString();
-                if (dni.length() == 8)
-                {
-                    Persona p = db.getPersonaPorDNI(dni);
-                    if(p!=null){
-                        Toast.makeText(AgregarAlumnoActivity.this, "El dni ingresado ya está en el sistema!", Toast.LENGTH_SHORT).show();
-                        finish();
-                    }
-                    else{
-                        boolean check = db.addClient(nom, ape, dni);
-                        if (check)
-                            Toast.makeText(AgregarAlumnoActivity.this, "Cliente guardado con exito!", Toast.LENGTH_SHORT).show();
-                        else
-                            Toast.makeText(AgregarAlumnoActivity.this, "El cliente no se pudo guardar!", Toast.LENGTH_SHORT).show();
-                        finish();
-                    }
-                }
-                else
-                    Toast.makeText(AgregarAlumnoActivity.this,"Datos Incorrectos", Toast.LENGTH_SHORT).show();
 
+    }
+    public void registrar(View view){
+        String nom = nomTxt.getText().toString();
+        String ape = apeTxt.getText().toString();
+        String dni = dniTxt.getText().toString();
+        if (dni.length() == 8)
+        {
+            Persona p = db.getPersonaPorDNI(dni);
+            if(p!=null){
+                Toast.makeText(AgregarAlumnoActivity.this, "El dni ingresado ya está en el sistema!", Toast.LENGTH_SHORT).show();
+                finish();
             }
-        });
-
-
+            else{
+                boolean check = db.addClient(nom, ape, dni);
+                if (check)
+                    Toast.makeText(AgregarAlumnoActivity.this, "Cliente guardado con exito!", Toast.LENGTH_SHORT).show();
+                else
+                    Toast.makeText(AgregarAlumnoActivity.this, "El cliente no se pudo guardar!", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        }
+        else
+            Toast.makeText(AgregarAlumnoActivity.this,"Datos Incorrectos", Toast.LENGTH_SHORT).show();
+        finish();
     }
 }

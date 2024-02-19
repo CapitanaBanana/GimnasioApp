@@ -144,26 +144,27 @@ public class DBHelper extends SQLiteOpenHelper {
         return arrayList;
     }
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public ArrayList<Cuota> fetchCuotas(String dni){
+    public ArrayList<Cuota> fetchCuotas(){
         SQLiteDatabase db= this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT Inicio,Fin,DNI,ClienteFK FROM "+ TABLE_NAME_CUOTAS,null);
+        Cursor cursor = db.rawQuery("SELECT ClienteFK,Inicio,Fin,Tipo FROM "+ TABLE_NAME_CUOTAS,null);
         ArrayList<Cuota> arrayList = new ArrayList<>();
         while(cursor.moveToNext()){
             Cuota c;
-            if (cursor.getString(0)=="Libre" ){
-                c = new CuotaLibre(cursor.getString(1), LocalDate.parse(cursor.getString(2)), LocalDate.parse(cursor.getString(3)));
+            if (cursor.getString(3)=="Libre" ){
+                c = new CuotaLibre(cursor.getString(0), LocalDate.parse(cursor.getString(1)), LocalDate.parse(cursor.getString(2)));
             }
-            else if (cursor.getString(0)=="Dos Dias"){
-                c = new CuotaDosDias(cursor.getString(1), LocalDate.parse(cursor.getString(2)), LocalDate.parse(cursor.getString(3)));
+            else if (cursor.getString(3)=="Dos Dias"){
+                c = new CuotaDosDias(cursor.getString(0), LocalDate.parse(cursor.getString(1)), LocalDate.parse(cursor.getString(2)));
             }
             else {
-                c = new CuotaTresDias(cursor.getString(1), LocalDate.parse(cursor.getString(2)), LocalDate.parse(cursor.getString(3)));
+                c = new CuotaTresDias(cursor.getString(0), LocalDate.parse(cursor.getString(1)), LocalDate.parse(cursor.getString(2)));
             }
             arrayList.add(c);
         }
         cursor.close();
         return arrayList;
     }
+
     public Persona getPersonaPorDNI(String dni){
         SQLiteDatabase db =this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT Nombre,Apellido,DNI,Registro FROM "+ TABLE_NAME + " WHERE DNI = '" + dni + "'",null);

@@ -2,6 +2,7 @@ package com.example.gimnasioflex;
 
 import android.content.Context;
 import android.os.Build;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -30,5 +31,11 @@ public abstract class Cuota {
         return dni;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public boolean estaVencida(){
+        if (LocalDate.now().isAfter(getFin()))
+            return true;
+        else return false;
+    }
 }
 

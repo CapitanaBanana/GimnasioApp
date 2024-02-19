@@ -21,7 +21,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
     }
-    public void update(Context context, ArrayList<Persona> data){
+    public void update(ArrayList<Persona> data){
         this.mData = data;
         notifyDataSetChanged();
     }
@@ -44,7 +44,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     // total number of rows
     @Override
     public int getItemCount() {
-        return mData.size();
+        return mData != null ? mData.size() : 0;
     }
 
 

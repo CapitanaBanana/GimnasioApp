@@ -75,6 +75,4 @@ public class MenuCuotasActivity extends AppCompatActivity {
             Toast.makeText(MenuCuotasActivity.this, "La cuota no se pudo registrar!", Toast.LENGTH_SHORT).show();
         finish();
     }
-
-
 }

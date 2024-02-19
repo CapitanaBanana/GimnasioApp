@@ -14,8 +14,6 @@
         android:layout_marginTop="10dp"
         android:gravity="center"
         android:orientation="vertical">
-
-
         <TextView
             android:id="@+id/Alumnos_titulo"
             android:layout_width="wrap_content"
@@ -28,13 +26,13 @@
 
         <EditText
             android:id="@+id/Buscar_alumno"
-            android:layout_width="match_parent"
+            android:layout_width="350dp"
             android:layout_height="40sp"
             android:layout_margin="5dp"
-            android:padding="10sp"
             android:background="@drawable/rounded_corners"
             android:backgroundTint="@color/casi_blanco"
             android:hint="Ingrese el alumno a buscar"
+            android:padding="10sp"
             android:textColorHint="@color/gris" />
 
         <androidx.recyclerview.widget.RecyclerView

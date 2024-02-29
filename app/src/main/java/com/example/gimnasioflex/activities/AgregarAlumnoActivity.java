@@ -1,13 +1,15 @@
-package com.example.gimnasioflex;
+package com.example.gimnasioflex.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.example.gimnasioflex.models.Persona;
+import com.example.gimnasioflex.R;
 
 public class AgregarAlumnoActivity extends AppCompatActivity {
     EditText dniTxt,nomTxt,apeTxt;

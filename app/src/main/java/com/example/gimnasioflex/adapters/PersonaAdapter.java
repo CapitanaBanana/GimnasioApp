@@ -1,4 +1,4 @@
-package com.example.gimnasioflex;
+package com.example.gimnasioflex.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,6 +9,9 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import com.example.gimnasioflex.R;
+import com.example.gimnasioflex.models.Persona;
 
 import java.util.List;
 

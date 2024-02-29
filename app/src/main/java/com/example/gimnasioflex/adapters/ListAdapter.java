@@ -1,4 +1,4 @@
-package com.example.gimnasioflex;
+package com.example.gimnasioflex.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,6 +7,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.gimnasioflex.R;
+import com.example.gimnasioflex.models.Persona;
 
 import java.util.ArrayList;
 
@@ -17,7 +20,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     private ItemClickListener mClickListener;
 
     // data is passed into the constructor
-    ListAdapter(Context context, ArrayList<Persona> data) {
+    public ListAdapter(Context context, ArrayList<Persona> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
     }
@@ -68,11 +71,11 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     }
 
     // convenience method for getting data at click position
-    Persona getItem(int id) {
+    public Persona getItem(int id) {
         return mData.get(id);
     }
     // allows clicks events to be caught
-    void setClickListener(ItemClickListener itemClickListener) {
+    public void setClickListener(ItemClickListener itemClickListener) {
         this.mClickListener = itemClickListener;
     }
 

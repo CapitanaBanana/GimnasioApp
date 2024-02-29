@@ -1,33 +1,23 @@
-package com.example.gimnasioflex;
+package com.example.gimnasioflex.activities;
 
-import static com.example.gimnasioflex.ListarAlumnosActivity.EXTRA_PERSONA;
+import static com.example.gimnasioflex.activities.ListarAlumnosActivity.EXTRA_PERSONA;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Canvas;
-import android.graphics.Paint;
 import android.os.Build;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.Spanned;
-import android.text.TextWatcher;
-import android.text.style.ReplacementSpan;
-import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.gimnasioflex.models.Persona;
+import com.example.gimnasioflex.R;
+
 import java.time.LocalDate;
-import java.time.chrono.ChronoLocalDate;
-import java.time.format.DateTimeFormatter;
 
 public class MenuCuotasActivity extends AppCompatActivity {
     private Persona persona;

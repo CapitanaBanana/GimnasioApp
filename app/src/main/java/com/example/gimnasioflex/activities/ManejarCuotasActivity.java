@@ -1,4 +1,4 @@
-package com.example.gimnasioflex;
+package com.example.gimnasioflex.activities;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,10 +16,16 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+
+import com.example.gimnasioflex.models.Cuota;
+import com.example.gimnasioflex.adapters.ListAdapter;
+import com.example.gimnasioflex.models.Persona;
+import com.example.gimnasioflex.R;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class ManejarCuotasActivity extends AppCompatActivity implements ListAdapter.ItemClickListener{
+public class ManejarCuotasActivity extends AppCompatActivity implements ListAdapter.ItemClickListener {
     public static final String EXTRA_PERSONA= "com.example.GimnasioFlex.PERSONA";
     private ListAdapter adapter;
     private EditText editText;

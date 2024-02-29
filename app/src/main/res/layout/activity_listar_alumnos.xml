@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/casi_negro"
-    tools:context=".ListarAlumnosActivity">
+    tools:context=".activities.ListarAlumnosActivity">
 
 
     <LinearLayout

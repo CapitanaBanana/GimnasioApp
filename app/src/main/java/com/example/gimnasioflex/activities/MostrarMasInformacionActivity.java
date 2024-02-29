@@ -1,22 +1,20 @@
-package com.example.gimnasioflex;
+package com.example.gimnasioflex.activities;
 
-import static com.example.gimnasioflex.ListarAlumnosActivity.EXTRA_PERSONA;
+import static com.example.gimnasioflex.activities.ListarAlumnosActivity.EXTRA_PERSONA;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.Serializable;
+import com.example.gimnasioflex.models.Persona;
+import com.example.gimnasioflex.R;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -25,7 +23,7 @@ import java.util.ArrayList;
 public class MostrarMasInformacionActivity extends AppCompatActivity {
     public DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     private Persona persona;
-    private  DBHelper db;
+    private DBHelper db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

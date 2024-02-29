@@ -1,4 +1,6 @@
-package com.example.gimnasioflex;
+package com.example.gimnasioflex.models;
+
+import com.example.gimnasioflex.models.Cuota;
 
 import java.time.LocalDate;
 

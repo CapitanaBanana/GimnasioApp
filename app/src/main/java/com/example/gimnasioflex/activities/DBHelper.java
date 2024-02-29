@@ -1,6 +1,5 @@
-package com.example.gimnasioflex;
+package com.example.gimnasioflex.activities;
 
-import android.app.Person;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -11,9 +10,14 @@ import android.os.Build;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
+import com.example.gimnasioflex.models.Cuota;
+import com.example.gimnasioflex.models.CuotaDosDias;
+import com.example.gimnasioflex.models.CuotaLibre;
+import com.example.gimnasioflex.models.CuotaTresDias;
+import com.example.gimnasioflex.models.Persona;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Locale;
 
 public class DBHelper extends SQLiteOpenHelper {
 

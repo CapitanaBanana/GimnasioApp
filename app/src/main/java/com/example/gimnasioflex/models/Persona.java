@@ -1,4 +1,4 @@
-package com.example.gimnasioflex;
+package com.example.gimnasioflex.models;
 
 import android.os.Build;
 import android.os.Parcelable;
@@ -42,7 +42,7 @@ public class Persona implements Serializable {
     }
 
 
-    Persona(String nom, String ape, String dni, String reg){
+    public Persona(String nom, String ape, String dni, String reg){
         this.dni= dni;
         this.nom=nom;
         this.ape=ape;

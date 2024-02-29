@@ -1,4 +1,4 @@
-package com.example.gimnasioflex;
+package com.example.gimnasioflex.activities;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,24 +10,18 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.gimnasioflex.DBHelper;
-import com.example.gimnasioflex.ListAdapter;
-import com.example.gimnasioflex.MostrarMasInformacionActivity;
-import com.example.gimnasioflex.Persona;
+import com.example.gimnasioflex.adapters.ListAdapter;
+import com.example.gimnasioflex.models.Persona;
+import com.example.gimnasioflex.R;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 
 public class ListarAlumnosActivity extends AppCompatActivity implements ListAdapter.ItemClickListener{
     public static final String EXTRA_PERSONA= "com.example.GimnasioFlex.PERSONA";

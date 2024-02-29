@@ -12,16 +12,25 @@ public class Persona implements Serializable {
     private String dni, nom, ape;
     private LocalDate registro;
 
-    public ArrayList<LocalDate> getAsistencia() {
-        return asistencia;
+    private ArrayList<Cuota> cuotas;
+
+
+    public Persona(String nom, String ape, String dni, String reg){
+        this.dni= dni;
+        this.nom=nom;
+        this.ape=ape;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            this.registro=LocalDate.parse(reg);
+        }
+        this.cuotas = new ArrayList<>();
     }
-
-    public void setAsistencia(ArrayList<LocalDate> asistencia) {
-        this.asistencia = asistencia;
+    public void agregarCuota(Cuota c) {
+        cuotas.add(c);
     }
-
-    private ArrayList<LocalDate> asistencia;
-
+    @Override
+    public String toString(){
+        return (this.nom+" "+ this.ape);
+    }
     public String getApe() {
         return ape;
     }
@@ -40,20 +49,12 @@ public class Persona implements Serializable {
     public void setRegistro(LocalDate reg) {
         registro=reg;
     }
-
-
-    public Persona(String nom, String ape, String dni, String reg){
-        this.dni= dni;
-        this.nom=nom;
-        this.ape=ape;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            this.registro=LocalDate.parse(reg);
-        }
-        this.asistencia = new ArrayList<>();
+    public ArrayList<Cuota> getCuotas() {
+        return cuotas;
     }
-    @Override
-    public String toString(){
-        return (this.nom+" "+ this.ape);
+
+    public void setCuotas(ArrayList<Cuota> cuota) {
+        this.cuotas = cuota;
     }
 
 }

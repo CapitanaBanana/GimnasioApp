@@ -10,12 +10,15 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.gimnasioflex.models.Cuota;
 import com.example.gimnasioflex.adapters.ListAdapter;
@@ -31,10 +34,8 @@ public class ManejarCuotasActivity extends AppCompatActivity implements ListAdap
     private EditText editText;
     private RecyclerView recyclerView;
     private DBHelper db = new DBHelper(this);
-    private ArrayList<Persona> data;
-    private ArrayList<Persona> listaFiltrada = new ArrayList<>();
-    private Spinner spinnerFiltrado;
-
+    private ArrayList<Persona> data= new ArrayList<>();
+    private ArrayList<Persona> listaFiltrada;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,10 +50,12 @@ public class ManejarCuotasActivity extends AppCompatActivity implements ListAdap
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         }
 
-        setContentView(R.layout.activity_manejar_cuotas);
-        recyclerView = findViewById(R.id.recyclerView2);
-        spinnerFiltrado= findViewById(R.id.spinnerFiltrado);
-        data= db.fetchClient();
+        setContentView(R.layout.activity_listar_alumnos);
+        editText=findViewById(R.id.Buscar_alumno);
+        recyclerView = findViewById(R.id.recyclerView);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            data= db.fetchUltimaCuota();
+        }
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         // Crea e inicializa el adaptador con la lista de personas
@@ -60,56 +63,38 @@ public class ManejarCuotasActivity extends AppCompatActivity implements ListAdap
         adapter.setClickListener(this);
         // Asigna el adaptador al RecyclerView
         recyclerView.setAdapter(adapter);
-        adapter.update(data);
 
-        // Obtén las opciones de filtrado del recurso de cadenas
-        String[] opcionesFiltrado = getResources().getStringArray(R.array.filter_options);
-
-        // Configura el adaptador para el Spinner
-        ArrayAdapter<String> adapter2 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, opcionesFiltrado);
-        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerFiltrado.setAdapter(adapter2);
-
-
-        // Maneja el evento de selección del Spinner
-        spinnerFiltrado.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @RequiresApi(api = Build.VERSION_CODES.O)
+        editText.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                // Lógica para manejar la opción de filtrado seleccionada
-                String selectedFilter = opcionesFiltrado[position];
-                // Actualiza la lista según el filtro seleccionado
-                updateListAccordingToFilter(selectedFilter);
+            public void beforeTextChanged(CharSequence charSequence, int start, int before, int count) {
             }
-            public void onNothingSelected(AdapterView<?> parentView) {
-                // No se necesita realizar ninguna acción cuando no se selecciona nada
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
+                // Filtra la lista según el texto ingresado
+                listaFiltrada = filtrarLista(charSequence.toString());
+                adapter.update(listaFiltrada);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
             }
         });
-
     }
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    private void updateListAccordingToFilter(String selectedFilter) {
-
-        if(selectedFilter.equals("Listar todo"))
-            adapter.update(data);
-        else if(selectedFilter.equals("Ver personas que deben cuota")){
-            for (Cuota cuota :db.fetchCuotas()) {
-                if (cuota.estaVencida())
-                    listaFiltrada.add(db.getPersonaPorDNI(cuota.getDni()));
+    private ArrayList<Persona> filtrarLista(String textoBusqueda) {
+        ArrayList<Persona> listaFiltrada = new ArrayList<>();
+        for (Persona item : data) {
+            if (item.getNom().toLowerCase().contains(textoBusqueda.toLowerCase()) || item.getApe().toLowerCase().contains(textoBusqueda.toLowerCase()) ||
+                    item.getDni().contains(textoBusqueda)) {
+                listaFiltrada.add(item);
             }
-            adapter.update(listaFiltrada);
         }
-        else if(selectedFilter.equals("Ver personas que no cumplieron con su cuota")){
-            //implementar
-        }
+        return listaFiltrada;
     }
-
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void onItemClick(View view, int position) {
-        Intent intent = new Intent(this, MostrarMasInformacionActivity.class);
-        intent.putExtra(EXTRA_PERSONA, (Serializable) adapter.getItem(position));
-        startActivity(intent);
+        Toast.makeText(ManejarCuotasActivity.this, "dias desde vencimiento= "+  adapter.getItem(position).getCuotas().get(0).diasVencida(), Toast.LENGTH_SHORT).show();
     }
-
 }

@@ -1,6 +1,7 @@
 package com.example.gimnasioflex.activities;
 
 import static com.example.gimnasioflex.activities.ListarAlumnosActivity.EXTRA_PERSONA;
+import static com.example.gimnasioflex.utils.Common.precioDeTipo;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -48,7 +49,7 @@ public class MenuCuotasActivity extends AppCompatActivity {
         if(dosVeces.isChecked())
             agregarCuota("Dos Dias");
         else if(tresVeces.isChecked())
-            agregarCuota("tres Dias");
+            agregarCuota("Tres Dias");
         else if (libre.isChecked())
             agregarCuota("Libre");
         else
@@ -58,7 +59,7 @@ public class MenuCuotasActivity extends AppCompatActivity {
     private void agregarCuota(String tipo){
         LocalDate inicio= LocalDate.of(fechaInicio.getYear(), fechaInicio.getMonth(), fechaInicio.getDayOfMonth());
         db = new DBHelper(MenuCuotasActivity.this);
-        boolean check = db.addCuota(persona.getDni(), inicio, inicio.plusDays(30), tipo);
+        boolean check = db.addCuota(persona.getDni(), inicio, inicio.plusDays(30), tipo, precioDeTipo(tipo));
         if (check)
             Toast.makeText(MenuCuotasActivity.this, "Cuota agregada con exito!", Toast.LENGTH_SHORT).show();
         else

@@ -1,5 +1,7 @@
 package com.example.gimnasioflex.activities;
 
+import static com.example.gimnasioflex.utils.Common.*;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -11,9 +13,6 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
 import com.example.gimnasioflex.models.Cuota;
-import com.example.gimnasioflex.models.CuotaDosDias;
-import com.example.gimnasioflex.models.CuotaLibre;
-import com.example.gimnasioflex.models.CuotaTresDias;
 import com.example.gimnasioflex.models.Persona;
 
 import java.time.LocalDate;
@@ -21,26 +20,7 @@ import java.util.ArrayList;
 
 public class DBHelper extends SQLiteOpenHelper {
 
-    //Tabla clientes
-    private static final String DATABASE_NAME = "GimnasioFlex";
-    private static final int DATABASE_VERSION = 1;
-    private static final String TABLE_NAME = "Clientes";
-    private static final String KEY_ID = "id";
-    private static final String KEY_NAME = "Nombre";
-    private static final String KEY_APE = "Apellido";
-    private static final String KEY_DNI = "DNI";
-    private static final String KEY_REGISTRO = "Registro";
 
-    //Tabla asistencia
-    private static final String TABLE_NAME_ASISTENCIA = "Asistencia";
-    private static final String KEY_FECHA= "Fecha";
-    private static final String KEY_CLIENTEFK = "ClienteFK";
-
-    //Tabla cuotas
-    private static final String TABLE_NAME_CUOTAS = "Cuotas";
-    private static final String KEY_INICIO= "Inicio";
-    private static final String KEY_FIN= "Fin";
-    private static final String KEY_TIPO= "Tipo";
 
     public DBHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -57,19 +37,15 @@ public class DBHelper extends SQLiteOpenHelper {
                 + KEY_DNI + " TEXT,"
                 + KEY_REGISTRO + " DATE)");
 
-        //crea tabla asistencia
-        db.execSQL("CREATE TABLE " + TABLE_NAME_ASISTENCIA + "("
-                + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-                + KEY_FECHA + " DATE,"
-                + KEY_CLIENTEFK + " TEXT)");
-
         //crea tabla cuotas
         db.execSQL("CREATE TABLE " + TABLE_NAME_CUOTAS + "("
                 + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + KEY_TIPO + " TEXT,"
                 + KEY_CLIENTEFK + " TEXT,"
                 + KEY_INICIO + " DATE,"
-                + KEY_FIN + " DATE)");
+                + KEY_FIN + " DATE,"
+                + KEY_PRECIO + " INTEGER)");
+
     }
 
     @Override
@@ -96,26 +72,15 @@ public class DBHelper extends SQLiteOpenHelper {
        else
            return true;
     }
-    public boolean addAsistencia(String dni){
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(KEY_CLIENTEFK, dni);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            values.put(KEY_FECHA, String.valueOf(LocalDate.now()));
-        }
-        long res= db.insert(TABLE_NAME_ASISTENCIA, null, values);
-        if(res==-1)
-            return false;
-        else
-            return true;
-    }
-    public boolean addCuota(String dni, LocalDate inicio, LocalDate fin, String tipo){
+
+    public boolean addCuota(String dni, LocalDate inicio, LocalDate fin, String tipo, int precio){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(KEY_CLIENTEFK, dni);
         values.put(KEY_INICIO, String.valueOf(inicio));
         values.put(KEY_FIN, String.valueOf(fin));
         values.put(KEY_TIPO, tipo);
+        values.put(KEY_PRECIO, precio);
         long res= db.insert(TABLE_NAME_CUOTAS, null, values);
         if(res==-1)
             return false;
@@ -133,42 +98,41 @@ public class DBHelper extends SQLiteOpenHelper {
         cursor.close();
         return arrayList;
     }
-    public ArrayList<LocalDate> fetchAsistencia(String dni){
-        SQLiteDatabase db= this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT Fecha FROM "+ TABLE_NAME_ASISTENCIA + " WHERE ClienteFK = '" + dni + "'",null );
-        ArrayList<LocalDate> arrayList = new ArrayList<>();
-        while(cursor.moveToNext()){
-            LocalDate fecha = null;
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-                  fecha = LocalDate.parse(cursor.getString(0));
-            }
-            arrayList.add(fecha);
-        }
-        cursor.close();
-        return arrayList;
-    }
     @RequiresApi(api = Build.VERSION_CODES.O)
     public ArrayList<Cuota> fetchCuotas(){
         SQLiteDatabase db= this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT ClienteFK,Inicio,Fin,Tipo FROM "+ TABLE_NAME_CUOTAS,null);
+        Cursor cursor = db.rawQuery("SELECT ClienteFK,Inicio,Fin,Tipo,Precio FROM "+ TABLE_NAME_CUOTAS,null);
         ArrayList<Cuota> arrayList = new ArrayList<>();
         while(cursor.moveToNext()){
             Cuota c;
-            if (cursor.getString(3)=="Libre" ){
-                c = new CuotaLibre(cursor.getString(0), LocalDate.parse(cursor.getString(1)), LocalDate.parse(cursor.getString(2)));
-            }
-            else if (cursor.getString(3)=="Dos Dias"){
-                c = new CuotaDosDias(cursor.getString(0), LocalDate.parse(cursor.getString(1)), LocalDate.parse(cursor.getString(2)));
-            }
-            else {
-                c = new CuotaTresDias(cursor.getString(0), LocalDate.parse(cursor.getString(1)), LocalDate.parse(cursor.getString(2)));
-            }
+            c = new Cuota(cursor.getString(0), LocalDate.parse(cursor.getString(1)), LocalDate.parse(cursor.getString(2)), cursor.getString(3),cursor.getInt(4));
             arrayList.add(c);
         }
         cursor.close();
         return arrayList;
     }
-
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public ArrayList<Persona> fetchUltimaCuota(){
+        SQLiteDatabase db = this.getReadableDatabase();
+        LocalDate currentDate = LocalDate.now();
+        String query = "SELECT C.ClienteFK, C.Inicio, C.Fin, C.Tipo, C.Precio, P.Nombre, P.Apellido, P.DNI, P.Registro " +
+                "FROM " + TABLE_NAME_CUOTAS + " C " +
+                "INNER JOIN " + TABLE_NAME + " P ON C.ClienteFK = P.DNI " +
+                "WHERE (C.ClienteFK, C.Fin) IN (SELECT ClienteFK, MAX(Fin) FROM " + TABLE_NAME_CUOTAS +
+                " WHERE Fin <= '" + currentDate + "' GROUP BY ClienteFK)";
+        Cursor cursor = db.rawQuery(query, null);
+        ArrayList<Persona> arrayList = new ArrayList<>();
+        while(cursor.moveToNext()){
+            Cuota c;
+            Persona p;
+            c = new Cuota(cursor.getString(0), LocalDate.parse(cursor.getString(1)), LocalDate.parse(cursor.getString(2)), cursor.getString(3),cursor.getInt(4));
+            p= new Persona(cursor.getString(5), cursor.getString(6), cursor.getString(7), cursor.getString(8));
+            p.agregarCuota(c);
+            arrayList.add(p);
+        }
+        cursor.close();
+        return arrayList;
+    }
     public Persona getPersonaPorDNI(String dni){
         SQLiteDatabase db =this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT Nombre,Apellido,DNI,Registro FROM "+ TABLE_NAME + " WHERE DNI = '" + dni + "'",null);

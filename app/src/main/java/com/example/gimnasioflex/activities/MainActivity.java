@@ -1,4 +1,6 @@
 package com.example.gimnasioflex.activities;
+import static com.example.gimnasioflex.utils.Common.precioDeTipo;
+
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -111,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
         if(dosVeces.isChecked())
             agregarCuota("Dos Dias");
         else if(tresVeces.isChecked())
-            agregarCuota("tres Dias");
+            agregarCuota("Tres Dias");
         else if (libre.isChecked())
             agregarCuota("Libre");
         else
@@ -121,33 +123,13 @@ public class MainActivity extends AppCompatActivity {
     private void agregarCuota(String tipo){
         LocalDate inicio= LocalDate.now();
         db = new DBHelper(MainActivity.this);
-        boolean check = db.addCuota(seleccionado.getDni(), inicio, inicio.plusDays(30), tipo);
+        boolean check = db.addCuota(seleccionado.getDni(), inicio, inicio.plusDays(30), tipo, precioDeTipo(tipo));
         if (check)
             Toast.makeText(MainActivity.this, "Cuota agregada con exito!", Toast.LENGTH_SHORT).show();
         else
             Toast.makeText(MainActivity.this, "La cuota no se pudo registrar!", Toast.LENGTH_SHORT).show();
     }
     //modulo buscar cliente
-    public void verificarExistencia(View view){
-        {
-            TextView txtDNI = findViewById(R.id.busqueda);
-            String dni = txtDNI.getText().toString();
-            if (dni.length()!=8)
-                Toast.makeText(MainActivity.this, "El formato del DNI es inválido", Toast.LENGTH_SHORT).show();
-            else{
-                DBHelper db = new DBHelper(this);
-                Persona p= db.getPersonaPorDNI(dni);
-                if (p==null){
-                    Toast.makeText(MainActivity.this, "El DNI ingresado no existe!", Toast.LENGTH_SHORT).show();
-                }
-                else{
-                    Toast.makeText(MainActivity.this, "Hola, "+ p.getNom()+"!", Toast.LENGTH_SHORT).show();
-                    db.addAsistencia(dni);
-                }
-            }
-
-        }
-    }
 
     public void agregarAlumno(View view) {
         Intent intent = new Intent(this, AgregarAlumnoActivity.class);

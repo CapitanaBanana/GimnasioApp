@@ -1,4 +1,5 @@
 package com.example.gimnasioflex.activities;
+
 import static com.example.gimnasioflex.utils.Common.precioDeTipo;
 
 import androidx.annotation.RequiresApi;
@@ -9,6 +10,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
@@ -37,25 +39,25 @@ public class MainActivity extends AppCompatActivity {
     private RadioButton tresVeces;
     private RadioButton libre;
     private Persona seleccionado;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.LOLLIPOP){
-           getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-           getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-           getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-           getWindow().setStatusBarColor(Color.TRANSPARENT);
-       }
-       else{
-           getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-       }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+            getWindow().setStatusBarColor(Color.TRANSPARENT);
+        } else {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        }
         setContentView(R.layout.activity_main);
 
         //seteo cosas búsqueda
         searchView = findViewById(R.id.busqueda);
 
-       //seteo cosas para que ande el listado
-       actualizarDB();
+        //seteo cosas para que ande el listado
+        actualizarDB();
 
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -92,36 +94,40 @@ public class MainActivity extends AppCompatActivity {
             InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(getWindow().getDecorView().getWindowToken(), 0);
         });
-        dosVeces=findViewById(R.id.DosVeces);
+        dosVeces = findViewById(R.id.DosVeces);
         tresVeces = findViewById(R.id.TresVeces);
         libre = findViewById(R.id.Libre);
     }
-    private void actualizarDB(){
-        listaPersonas= db.fetchClient();
+
+    private void actualizarDB() {
+        listaPersonas = db.fetchClient();
         listaFiltrada = new ArrayList<>(listaPersonas);
         adapter = new PersonaAdapter(this, listaFiltrada);
         listView = findViewById(R.id.listView);
         listView.setAdapter(adapter);
         searchView.setQuery("", true);
     }
-    protected void onResume(){
+
+    protected void onResume() {
         super.onResume();
         actualizarDB();
     }
+
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public void registrarCuota(View view){
-        if(dosVeces.isChecked())
+    public void registrarCuota(View view) {
+        if (dosVeces.isChecked())
             agregarCuota("Dos Dias");
-        else if(tresVeces.isChecked())
+        else if (tresVeces.isChecked())
             agregarCuota("Tres Dias");
         else if (libre.isChecked())
             agregarCuota("Libre");
         else
             Toast.makeText(MainActivity.this, "Debe seleccionar un tipo de cuota!", Toast.LENGTH_SHORT).show();
     }
+
     @RequiresApi(api = Build.VERSION_CODES.O)
-    private void agregarCuota(String tipo){
-        LocalDate inicio= LocalDate.now();
+    private void agregarCuota(String tipo) {
+        LocalDate inicio = LocalDate.now();
         db = new DBHelper(MainActivity.this);
         boolean check = db.addCuota(seleccionado.getDni(), inicio, inicio.plusDays(30), tipo, precioDeTipo(tipo));
         if (check)
@@ -135,12 +141,14 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, AgregarAlumnoActivity.class);
         startActivity(intent);
     }
+
     public void listarAlumnos(View view) {
         Intent intent = new Intent(this, ListarAlumnosActivity.class);
         startActivity(intent);
     }
+
     public void manejarCuotas(View view) {
-        Intent intent = new Intent(this, ManejarCuotasActivity.class);
+        Intent intent = new Intent(this, MenuDeudoresActivity.class);
         startActivity(intent);
     }
 }

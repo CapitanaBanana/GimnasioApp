@@ -12,6 +12,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
@@ -20,6 +21,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.gimnasioflex.adapters.ListadoDeudoresAdapter;
 import com.example.gimnasioflex.models.Cuota;
 import com.example.gimnasioflex.adapters.ListAdapter;
 import com.example.gimnasioflex.models.Persona;
@@ -28,41 +30,45 @@ import com.example.gimnasioflex.R;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class ManejarCuotasActivity extends AppCompatActivity implements ListAdapter.ItemClickListener {
-    public static final String EXTRA_PERSONA= "com.example.GimnasioFlex.PERSONA";
-    private ListAdapter adapter;
+public class MenuDeudoresActivity extends AppCompatActivity implements ListAdapter.ItemClickListener {
+    public static final String EXTRA_PERSONA = "com.example.GimnasioFlex.PERSONA";
+    private ListadoDeudoresAdapter adapter;
     private EditText editText;
     private RecyclerView recyclerView;
     private DBHelper db = new DBHelper(this);
-    private ArrayList<Persona> data= new ArrayList<>();
+    private ArrayList<Persona> data = new ArrayList<>();
     private ArrayList<Persona> listaFiltrada;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.LOLLIPOP){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
             getWindow().setStatusBarColor(Color.TRANSPARENT);
-        }
-        else{
+        } else {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         }
 
         setContentView(R.layout.activity_listar_alumnos);
-        editText=findViewById(R.id.Buscar_alumno);
+        editText = findViewById(R.id.Buscar_alumno);
         recyclerView = findViewById(R.id.recyclerView);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            data= db.fetchUltimaCuota();
+            data = db.fetchCuotasVencidas();
         }
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         // Crea e inicializa el adaptador con la lista de personas
-        adapter= new ListAdapter(this, data);
+        if (!data.isEmpty()) {
+        adapter = new ListadoDeudoresAdapter(this, data);
         adapter.setClickListener(this);
         // Asigna el adaptador al RecyclerView
         recyclerView.setAdapter(adapter);
+        }
+        else Toast.makeText(MenuDeudoresActivity.this, "No hay nadie que deba cuota", Toast.LENGTH_SHORT).show();
+
 
         editText.addTextChangedListener(new TextWatcher() {
             @Override
@@ -82,6 +88,7 @@ public class ManejarCuotasActivity extends AppCompatActivity implements ListAdap
             }
         });
     }
+
     private ArrayList<Persona> filtrarLista(String textoBusqueda) {
         ArrayList<Persona> listaFiltrada = new ArrayList<>();
         for (Persona item : data) {
@@ -95,6 +102,6 @@ public class ManejarCuotasActivity extends AppCompatActivity implements ListAdap
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void onItemClick(View view, int position) {
-        Toast.makeText(ManejarCuotasActivity.this, "dias desde vencimiento= "+  adapter.getItem(position).getCuotas().get(0).diasVencida(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(MenuDeudoresActivity.this, "tocaste a: " + adapter.getItem(position).getNom(), Toast.LENGTH_SHORT).show();
     }
 }

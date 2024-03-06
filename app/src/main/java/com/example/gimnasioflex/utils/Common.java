@@ -1,5 +1,7 @@
 package com.example.gimnasioflex.utils;
 
+import java.time.format.DateTimeFormatter;
+
 public class Common {
     //Tabla clientes
     public static final String DATABASE_NAME = "GimnasioFlex";
@@ -26,6 +28,8 @@ public class Common {
     public static int precioLibre= 1000;
     public static int precioTresDias= 500;
     public static int precioDosDias= 200;
+
+    public static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     public static int precioDeTipo(String tipo){
         if (tipo.equals("Libre")){

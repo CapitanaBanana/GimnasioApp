@@ -18,66 +18,63 @@
         android:layout_marginRight="5dp"
         android:layout_weight="1"
         android:gravity="center"
-        android:padding="5dp"
+        android:padding="2dp"
         android:text="Agregando cuota"
         android:textAlignment="center"
         android:textColor="@color/casi_blanco"
         android:textColorHint="#757474"
-        android:textSize="20sp">
+        android:textSize="12sp">
 
     </TextView>
     <TextView
         android:id="@+id/Nombre"
+        android:padding="2dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
+        android:gravity="center_horizontal"
         android:layout_weight="1"
-        android:padding="5dp"
+        android:text="sss"
         android:textSize="25dp"
         android:textColor="@color/casi_blanco">
     </TextView>
 
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
 
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/DosVeces"
+            style="@style/ButtonStyle"
+            android:layout_width="75dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="10dp"
+            android:padding="3dp"
+            android:text="Dos veces"
+            android:textAlignment="center" />
 
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/TresVeces"
+            style="@style/ButtonStyle"
+            android:layout_width="75dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="10dp"
+            android:padding="3dp"
+            android:text="Tres veces"
+            android:textAlignment="center" />
 
-        <RadioGroup
-            android:id="@+id/radioGroup"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/Libre"
+            style="@style/ButtonStyle"
+            android:layout_width="75dp"
+            android:layout_height="50dp"
+            android:padding="3dp"
+            android:text="Libre"
+            android:textAlignment="center" />
 
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/DosVeces"
-                android:layout_width="90dp"
-                android:layout_height="50dp"
-                android:padding="5dp"
-                android:layout_marginEnd="10dp"
-                style="@style/ButtonStyle"
-                android:textAlignment="center"
-                android:text="Dos veces" />
-
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/TresVeces"
-                android:layout_width="90dp"
-                android:padding="5dp"
-                android:layout_height="50dp"
-                android:layout_marginEnd="10dp"
-                style="@style/ButtonStyle"
-                android:textAlignment="center"
-                android:text="Tres veces" />
-
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/Libre"
-                style="@style/ButtonStyle"
-                android:layout_width="90dp"
-                android:layout_height="50dp"
-                android:padding="5dp"
-                android:text="Libre"
-                android:textAlignment="center" />
-
-        </RadioGroup>
+    </RadioGroup>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -106,14 +103,13 @@
 
     </LinearLayout>
 
-     <Button
-         android:id="@+id/registrar"
-         style="@style/Button.MyApp"
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content"
-         android:layout_marginTop="20dp"
-         android:layout_weight="1"
-         android:onClick="registrarCuota"
-         android:text="Registrar" />
+    <Button
+        android:id="@+id/registrar"
+        style="@style/Button.MyApp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:onClick="registrarCuota"
+        android:text="Registrar" />
 
- </LinearLayout>
+</LinearLayout>

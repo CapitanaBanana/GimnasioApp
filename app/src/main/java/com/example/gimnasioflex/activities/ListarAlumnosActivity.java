@@ -23,36 +23,36 @@ import com.example.gimnasioflex.R;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class ListarAlumnosActivity extends AppCompatActivity implements ListAdapter.ItemClickListener{
-    public static final String EXTRA_PERSONA= "com.example.GimnasioFlex.PERSONA";
+public class ListarAlumnosActivity extends AppCompatActivity implements ListAdapter.ItemClickListener {
+    public static final String EXTRA_PERSONA = "com.example.GimnasioFlex.PERSONA";
     private ListAdapter adapter;
     private EditText editText;
     private RecyclerView recyclerView;
     private DBHelper db = new DBHelper(this);
     private ArrayList<Persona> data;
     private ArrayList<Persona> listaFiltrada;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.LOLLIPOP){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
             getWindow().setStatusBarColor(Color.TRANSPARENT);
-        }
-        else{
+        } else {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         }
 
         setContentView(R.layout.activity_listar_alumnos);
-        editText=findViewById(R.id.Buscar_alumno);
+        editText = findViewById(R.id.Buscar_alumno);
         recyclerView = findViewById(R.id.recyclerView);
-        data= db.fetchClient();
+        data = db.fetchClient();
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         // Crea e inicializa el adaptador con la lista de personas
-        adapter= new ListAdapter(this, data);
+        adapter = new ListAdapter(this, data);
         adapter.setClickListener(this);
         // Asigna el adaptador al RecyclerView
         recyclerView.setAdapter(adapter);
@@ -75,6 +75,7 @@ public class ListarAlumnosActivity extends AppCompatActivity implements ListAdap
             }
         });
     }
+
     private ArrayList<Persona> filtrarLista(String textoBusqueda) {
         ArrayList<Persona> listaFiltrada = new ArrayList<>();
         for (Persona item : data) {

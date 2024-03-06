@@ -27,37 +27,39 @@ public class MenuCuotasActivity extends AppCompatActivity {
     RadioButton dosVeces;
     RadioButton tresVeces;
     RadioButton libre;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_menu_cuotas);
+        setContentView(R.layout.activity_agregar_cuota);
         Intent intent = getIntent();
         if (intent != null && intent.hasExtra(EXTRA_PERSONA)) {
             persona = (Persona) intent.getSerializableExtra(EXTRA_PERSONA);
         }
         fechaInicio = findViewById(R.id.datePicker);
         TextView textView = findViewById(R.id.Nombre);
-        textView.setText("Alumno: " + persona.getNom()+ " " + persona.getApe());
+        textView.setText("Alumno: " + persona.getNom() + " " + persona.getApe());
 
-        dosVeces=findViewById(R.id.DosVeces);
+        dosVeces = findViewById(R.id.DosVeces);
         tresVeces = findViewById(R.id.TresVeces);
         libre = findViewById(R.id.Libre);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public void registrarCuota(View view){
-        if(dosVeces.isChecked())
+    public void registrarCuota(View view) {
+        if (dosVeces.isChecked())
             agregarCuota("Dos Dias");
-        else if(tresVeces.isChecked())
+        else if (tresVeces.isChecked())
             agregarCuota("Tres Dias");
         else if (libre.isChecked())
             agregarCuota("Libre");
         else
             Toast.makeText(MenuCuotasActivity.this, "Debe seleccionar un tipo de cuota!", Toast.LENGTH_SHORT).show();
     }
+
     @RequiresApi(api = Build.VERSION_CODES.O)
-    private void agregarCuota(String tipo){
-        LocalDate inicio= LocalDate.of(fechaInicio.getYear(), fechaInicio.getMonth(), fechaInicio.getDayOfMonth());
+    private void agregarCuota(String tipo) {
+        LocalDate inicio = LocalDate.of(fechaInicio.getYear(), fechaInicio.getMonth(), fechaInicio.getDayOfMonth());
         db = new DBHelper(MenuCuotasActivity.this);
         boolean check = db.addCuota(persona.getDni(), inicio, inicio.plusDays(30), tipo, precioDeTipo(tipo));
         if (check)

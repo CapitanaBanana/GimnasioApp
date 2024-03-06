@@ -17,7 +17,7 @@
             android:theme="@style/TemaDialogo"
             android:exported="false" />
         <activity
-            android:name=".activities.ManejarCuotasActivity"
+            android:name=".activities.MenuDeudoresActivity"
             android:exported="false" />
         <activity
             android:name=".activities.MostrarMasInformacionActivity"

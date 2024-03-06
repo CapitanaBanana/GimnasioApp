@@ -6,6 +6,8 @@ import android.os.Parcelable;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class Persona implements Serializable {
     private static final long serialVersionUID = 1L; // Identificador de versión serializable
@@ -13,6 +15,7 @@ public class Persona implements Serializable {
     private LocalDate registro;
 
     private ArrayList<Cuota> cuotas;
+    private Cuota ultimaCuota;
 
 
     public Persona(String nom, String ape, String dni, String reg){
@@ -52,9 +55,15 @@ public class Persona implements Serializable {
     public ArrayList<Cuota> getCuotas() {
         return cuotas;
     }
+    public Cuota getUltimaCuota() {
+        return ultimaCuota;
+    }
 
     public void setCuotas(ArrayList<Cuota> cuota) {
         this.cuotas = cuota;
+    }
+    public void setUltimaCuota(Cuota cuota) {
+        this.ultimaCuota = cuota;
     }
 
 }

@@ -47,7 +47,7 @@
 
         <androidx.appcompat.widget.AppCompatRadioButton
             android:id="@+id/DosVeces"
-            style="@style/ButtonStyle"
+            style="@style/ButtonStyleTipoCuota"
             android:layout_width="75dp"
             android:layout_height="50dp"
             android:layout_marginEnd="10dp"
@@ -57,7 +57,7 @@
 
         <androidx.appcompat.widget.AppCompatRadioButton
             android:id="@+id/TresVeces"
-            style="@style/ButtonStyle"
+            style="@style/ButtonStyleTipoCuota"
             android:layout_width="75dp"
             android:layout_height="50dp"
             android:layout_marginEnd="10dp"
@@ -67,7 +67,7 @@
 
         <androidx.appcompat.widget.AppCompatRadioButton
             android:id="@+id/Libre"
-            style="@style/ButtonStyle"
+            style="@style/ButtonStyleTipoCuota"
             android:layout_width="75dp"
             android:layout_height="50dp"
             android:padding="3dp"
@@ -105,7 +105,7 @@
 
     <Button
         android:id="@+id/registrar"
-        style="@style/Button.MyApp"
+        style="@style/Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"

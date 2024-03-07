@@ -49,7 +49,7 @@
     <Button
         android:id="@+id/agregarAlumno"
         android:onClick="agregarAlumno"
-        android:background="@drawable/rounded_button"
+        style="@style/Button"
         android:layout_width="50dp"
         android:layout_height="50dp"
         app:icon="@drawable/plus"

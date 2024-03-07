@@ -61,7 +61,7 @@
         </TextView>
 
         <Button
-            style="@style/Button.MyApp"
+            style="@style/Button"
             android:id="@+id/AgregarCuota"
             android:onClick="agregarCuota"
             android:layout_width="match_parent"
@@ -70,7 +70,7 @@
             android:layout_weight="1"
             android:text="Agregar Cuota" />
         <Button
-            style="@style/Button.MyApp"
+            style="@style/Button"
             android:id="@+id/EliminarCliente"
             android:onClick="eliminarCliente"
             android:layout_width="match_parent"

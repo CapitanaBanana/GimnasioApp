@@ -66,25 +66,19 @@ public class DBHelper extends SQLiteOpenHelper {
         }
 
         long res = db.insert(TABLE_NAME, null, values);
-        if (res == -1)
-            return false;
-        else
-            return true;
+        return res != -1;
     }
 
     public boolean addCuota(String dni, LocalDate inicio, LocalDate fin, String tipo, int precio) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(KEY_CLIENTEFK, dni);
-        values.put(KEY_INICIO, String.valueOf(inicio));
-        values.put(KEY_FIN, String.valueOf(fin));
+        values.put(KEY_INICIO, inicio.toString());
+        values.put(KEY_FIN, fin.toString());
         values.put(KEY_TIPO, tipo);
         values.put(KEY_PRECIO, precio);
         long res = db.insert(TABLE_NAME_CUOTAS, null, values);
-        if (res == -1)
-            return false;
-        else
-            return true;
+        return res != -1;
     }
 
     public ArrayList<Persona> fetchClient() {
@@ -156,10 +150,7 @@ public class DBHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE DNI = ?", new String[]{dni});
         if (cursor.getCount() > 0) {
             long res = db.update(TABLE_NAME, values, "DNI=?", new String[]{dni});
-            if (res == -1)
-                return false;
-            else
-                return true;
+            return res != -1;
         } else {
             return false;
         }
@@ -170,10 +161,7 @@ public class DBHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE DNI = ?", new String[]{dni});
         if (cursor.getCount() > 0) {
             long res = db.delete(TABLE_NAME, "DNI=?", new String[]{dni});
-            if (res == -1)
-                return false;
-            else
-                return true;
+            return res != -1;
         } else {
             return false;
         }

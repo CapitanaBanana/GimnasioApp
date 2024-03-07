@@ -26,9 +26,7 @@ import java.util.ArrayList;
 public class ListarAlumnosActivity extends AppCompatActivity implements ListAdapter.ItemClickListener {
     public static final String EXTRA_PERSONA = "com.example.GimnasioFlex.PERSONA";
     private ListAdapter adapter;
-    private EditText editText;
-    private RecyclerView recyclerView;
-    private DBHelper db = new DBHelper(this);
+    private final DBHelper db = new DBHelper(this);
     private ArrayList<Persona> data;
     private ArrayList<Persona> listaFiltrada;
 
@@ -44,10 +42,16 @@ public class ListarAlumnosActivity extends AppCompatActivity implements ListAdap
         } else {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         }
-
+       crearListado();
+    }
+    protected void onResume(){
+        super.onResume();
+        crearListado();
+    }
+    private void crearListado(){
         setContentView(R.layout.activity_listar_alumnos);
-        editText = findViewById(R.id.Buscar_alumno);
-        recyclerView = findViewById(R.id.recyclerView);
+        EditText editText = findViewById(R.id.Buscar_alumno);
+        RecyclerView recyclerView = findViewById(R.id.recyclerView);
         data = db.fetchClient();
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -86,12 +90,30 @@ public class ListarAlumnosActivity extends AppCompatActivity implements ListAdap
         }
         return listaFiltrada;
     }
+    public void agregarAlumno(View view){
+        Intent intent = new Intent(this, AgregarAlumnoActivity.class);
+        startActivity(intent);
+    }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void onItemClick(View view, int position) {
         Intent intent = new Intent(this, MostrarMasInformacionActivity.class);
         intent.putExtra(EXTRA_PERSONA, (Serializable) adapter.getItem(position));
         startActivity(intent);
+    }
+    public void menuPrincipal(View view) {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        this.overridePendingTransition(0, 0);
+    }
+
+    public void listarAlumnos(View view) {
+    }
+
+    public void listarDeudores(View view) {
+        Intent intent = new Intent(this, MenuDeudoresActivity.class);
+        startActivity(intent);
+        this.overridePendingTransition(0, 0);
     }
 
 }

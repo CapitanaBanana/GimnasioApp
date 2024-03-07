@@ -6,10 +6,10 @@
     <color name="transparente">#00000000</color>
     <color name="gris_traslucido">#C6131313</color>
     <color name="gris_traslucido2">#52131313</color>
-    <color name="casi_negro">#1A1B1B</color>
+    <color name="casi_negro">#000000</color>
     <color name="gris">#808080</color>
     <color name="filtro_gris">#C3373737</color>
-    <color name="filtro_rojo">#B35A0000</color>
+    <color name="filtro_rojo">#B32B0000</color>
     <color name="filtro_rojo_fondo">#5A0000</color>
     <color name="colorPrimary">#8C0000</color>
     <color name="colorPrimaryDark">#810000</color>

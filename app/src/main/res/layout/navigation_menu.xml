@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/navigationMenu"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="bottom"
+        android:background="@color/gris_traslucido"
+        android:gravity="center_vertical"
+    android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+
+    <Button
+            android:id="@+id/menuPrincipal"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:layout_weight="1"
+            android:background="#00FBFBFB"
+            app:icon="@drawable/home2"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp"
+            app:iconSize="40dp"
+            app:strokeColor="#000000"
+            android:onClick="menuPrincipal" />
+
+        <Button
+            android:id="@+id/verUsuarios"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:layout_weight="1"
+            android:background="#00FBFBFB"
+            android:onClick="listarAlumnos"
+            app:icon="@drawable/list"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp"
+            app:iconSize="40dp"
+            app:strokeColor="#000000" />
+
+        <Button
+            android:id="@+id/verDeudores"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:layout_weight="1"
+            android:background="#00FBFBFB"
+            android:onClick="listarDeudores"
+            app:icon="@drawable/dollar"
+            app:iconPadding="0dp"
+            app:iconGravity="textStart"
+            app:iconSize="40dp"
+            app:strokeColor="#000000" />
+    </LinearLayout>
+
+</RelativeLayout>

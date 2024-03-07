@@ -10,7 +10,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
@@ -18,7 +17,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.SearchView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.gimnasioflex.models.Persona;
@@ -29,7 +27,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-    private ArrayAdapter<Persona> adapter;
     private ArrayList<Persona> listaPersonas;
     private ArrayList<Persona> listaFiltrada;
     private DBHelper db = new DBHelper(this);
@@ -102,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
     private void actualizarDB() {
         listaPersonas = db.fetchClient();
         listaFiltrada = new ArrayList<>(listaPersonas);
-        adapter = new PersonaAdapter(this, listaFiltrada);
+        ArrayAdapter<Persona> adapter = new PersonaAdapter(this, listaFiltrada);
         listView = findViewById(R.id.listView);
         listView.setAdapter(adapter);
         searchView.setQuery("", true);
@@ -137,18 +134,18 @@ public class MainActivity extends AppCompatActivity {
     }
     //modulo buscar cliente
 
-    public void agregarAlumno(View view) {
-        Intent intent = new Intent(this, AgregarAlumnoActivity.class);
-        startActivity(intent);
+    public void menuPrincipal(View view) {
     }
 
     public void listarAlumnos(View view) {
         Intent intent = new Intent(this, ListarAlumnosActivity.class);
         startActivity(intent);
+        this.overridePendingTransition(0, 0);
     }
 
-    public void manejarCuotas(View view) {
+    public void listarDeudores(View view) {
         Intent intent = new Intent(this, MenuDeudoresActivity.class);
         startActivity(intent);
+        this.overridePendingTransition(0, 0);
     }
 }

@@ -58,7 +58,6 @@ public class MostrarMasInformacionActivity extends AppCompatActivity {
             finish();
         } else
             Toast.makeText(this, "El cliente no se pudo eliminar", Toast.LENGTH_SHORT).show();
-
     }
 
 

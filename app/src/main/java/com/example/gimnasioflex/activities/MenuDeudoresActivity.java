@@ -1,41 +1,34 @@
 package com.example.gimnasioflex.activities;
 
+import static com.example.gimnasioflex.activities.ListarAlumnosActivity.EXTRA_PERSONA;
+
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.gimnasioflex.adapters.ListadoDeudoresAdapter;
-import com.example.gimnasioflex.models.Cuota;
 import com.example.gimnasioflex.adapters.ListAdapter;
 import com.example.gimnasioflex.models.Persona;
 import com.example.gimnasioflex.R;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 public class MenuDeudoresActivity extends AppCompatActivity implements ListAdapter.ItemClickListener {
-    public static final String EXTRA_PERSONA = "com.example.GimnasioFlex.PERSONA";
     private ListadoDeudoresAdapter adapter;
-    private EditText editText;
-    private RecyclerView recyclerView;
-    private DBHelper db = new DBHelper(this);
+    private final DBHelper db = new DBHelper(this);
     private ArrayList<Persona> data = new ArrayList<>();
     private ArrayList<Persona> listaFiltrada;
 
@@ -51,10 +44,16 @@ public class MenuDeudoresActivity extends AppCompatActivity implements ListAdapt
         } else {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         }
-
-        setContentView(R.layout.activity_listar_alumnos);
-        editText = findViewById(R.id.Buscar_alumno);
-        recyclerView = findViewById(R.id.recyclerView);
+        crearListado();
+    }
+    protected void onResume() {
+        super.onResume();
+        crearListado();
+    }
+    private void crearListado(){
+        setContentView(R.layout.activity_listado_deudores);
+        EditText editText = findViewById(R.id.Buscar_alumno);
+        RecyclerView recyclerView = findViewById(R.id.recyclerView2);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             data = db.fetchCuotasVencidas();
         }
@@ -62,10 +61,10 @@ public class MenuDeudoresActivity extends AppCompatActivity implements ListAdapt
 
         // Crea e inicializa el adaptador con la lista de personas
         if (!data.isEmpty()) {
-        adapter = new ListadoDeudoresAdapter(this, data);
-        adapter.setClickListener(this);
-        // Asigna el adaptador al RecyclerView
-        recyclerView.setAdapter(adapter);
+            adapter = new ListadoDeudoresAdapter(this, data);
+            adapter.setClickListener(this);
+            // Asigna el adaptador al RecyclerView
+            recyclerView.setAdapter(adapter);
         }
         else Toast.makeText(MenuDeudoresActivity.this, "No hay nadie que deba cuota", Toast.LENGTH_SHORT).show();
 
@@ -102,6 +101,22 @@ public class MenuDeudoresActivity extends AppCompatActivity implements ListAdapt
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void onItemClick(View view, int position) {
-        Toast.makeText(MenuDeudoresActivity.this, "tocaste a: " + adapter.getItem(position).getNom(), Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, MenuCuotasActivity.class);
+        intent.putExtra(EXTRA_PERSONA, adapter.getItem(position));
+        startActivity(intent);
+    }
+    public void menuPrincipal(View view) {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        this.overridePendingTransition(0, 0);
+    }
+
+    public void listarAlumnos(View view) {
+        Intent intent = new Intent(this, ListarAlumnosActivity.class);
+        startActivity(intent);
+        this.overridePendingTransition(0, 0);
+    }
+
+    public void listarDeudores(View view) {
     }
 }

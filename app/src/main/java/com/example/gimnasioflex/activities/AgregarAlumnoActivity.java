@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -16,7 +15,6 @@ import java.time.LocalDate;
 
 public class AgregarAlumnoActivity extends AppCompatActivity {
     EditText dniTxt, nomTxt, apeTxt;
-    Button regBtn;
     DBHelper db;
 
     @Override

@@ -10,7 +10,6 @@ import java.util.Collections;
 import java.util.Comparator;
 
 public class Persona implements Serializable {
-    private static final long serialVersionUID = 1L; // Identificador de versión serializable
     private String dni, nom, ape;
     private LocalDate registro;
 

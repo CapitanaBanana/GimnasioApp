@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,13 +8,13 @@
     android:background="@color/casi_negro"
     tools:context=".activities.ListarAlumnosActivity">
 
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_marginTop="10dp"
         android:gravity="center"
         android:orientation="vertical">
+
         <TextView
             android:id="@+id/Alumnos_titulo"
             android:layout_width="wrap_content"
@@ -30,7 +31,6 @@
             android:layout_height="40sp"
             android:layout_margin="5dp"
             android:background="@drawable/rounded_corners"
-            android:backgroundTint="@color/casi_blanco"
             android:hint="Ingrese el alumno a buscar"
             android:padding="10sp"
             android:textColorHint="@color/gris" />
@@ -39,9 +39,29 @@
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginBottom="10dp"
             android:padding="10dp"
             android:scrollbars="vertical"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/list_item" />
     </LinearLayout>
+
+    <Button
+        android:id="@+id/agregarAlumno"
+        android:onClick="agregarAlumno"
+        android:background="@drawable/rounded_button"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:icon="@drawable/plus"
+        android:layout_above="@id/navigation_menu"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="10dp"
+        app:iconGravity="textTop"
+        app:iconSize="30dp"
+        app:iconPadding="0dp"
+        android:layout_alignParentRight="true"/>
+
+    <include
+        android:id="@+id/navigation_menu"
+        layout="@layout/navigation_menu" />
 </RelativeLayout>

@@ -23,10 +23,9 @@ import java.time.LocalDate;
 public class MenuCuotasActivity extends AppCompatActivity {
     private Persona persona;
     private DatePicker fechaInicio;
-    private DBHelper db;
-    RadioButton dosVeces;
-    RadioButton tresVeces;
-    RadioButton libre;
+    private RadioButton dosVeces;
+    private RadioButton tresVeces;
+    private RadioButton libre;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +42,7 @@ public class MenuCuotasActivity extends AppCompatActivity {
         dosVeces = findViewById(R.id.DosVeces);
         tresVeces = findViewById(R.id.TresVeces);
         libre = findViewById(R.id.Libre);
+        
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -60,7 +60,7 @@ public class MenuCuotasActivity extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void agregarCuota(String tipo) {
         LocalDate inicio = LocalDate.of(fechaInicio.getYear(), fechaInicio.getMonth(), fechaInicio.getDayOfMonth());
-        db = new DBHelper(MenuCuotasActivity.this);
+        DBHelper db = new DBHelper(MenuCuotasActivity.this);
         boolean check = db.addCuota(persona.getDni(), inicio, inicio.plusDays(30), tipo, precioDeTipo(tipo));
         if (check)
             Toast.makeText(MenuCuotasActivity.this, "Cuota agregada con exito!", Toast.LENGTH_SHORT).show();

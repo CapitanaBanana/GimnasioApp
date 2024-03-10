@@ -27,9 +27,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
-                android:textColor="@color/casi_blanco"
-                android:textSize="20dp"
+                style="@style/TextViewTextoMedioImportante"
                 tools:text="@tools:sample/lorem" />
 
             <TextView
@@ -37,8 +35,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"
                 android:ellipsize="end"
-                android:textColor="@color/casi_blanco"
-                android:textSize="15dp"
+                style="@style/TextViewTextoNoImportante"
                 tools:text="@tools:sample/lorem/random" />
         </LinearLayout>
     </LinearLayout>

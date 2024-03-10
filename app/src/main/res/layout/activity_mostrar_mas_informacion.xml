@@ -24,39 +24,31 @@
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_weight="1"
-            android:background="@drawable/rounded_corners"
-            android:padding="10dp"
-            android:textColor="@color/casi_blanco">
+            style="@style/TextViewTextoACompletar">
 
         </TextView>
 
         <TextView
-            android:id="@+id/UltimaAsistencia"
-            style="@style/Widget.AppCompat.AutoCompleteTextView"
+            android:id="@+id/UltimaCuota"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="30dp"
             android:layout_marginRight="5dp"
             android:layout_weight="1"
-            android:background="@drawable/rounded_corners"
-            android:padding="10dp"
-            android:textColor="@color/casi_blanco">
+            style="@style/TextViewTextoACompletar">
 
         </TextView>
 
         <TextView
             android:id="@+id/FechaRegistro"
-            style="@style/Widget.AppCompat.AutoCompleteTextView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="30dp"
             android:layout_marginRight="5dp"
             android:layout_weight="1"
-            android:background="@drawable/rounded_corners"
-            android:padding="10dp"
-            android:textColor="@color/casi_blanco">
+            style="@style/TextViewTextoACompletar">
 
         </TextView>
 

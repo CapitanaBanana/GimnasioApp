@@ -9,14 +9,11 @@
         android:id="@+id/nombreTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:textColor="@color/casi_blanco"
-        android:textStyle="bold"/>
+        style="@style/TextViewTextoMedioImportante"/>
 
     <TextView
         android:id="@+id/dniTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/casi_blanco"
-        android:textSize="15sp"/>
+        style="@style/TextViewTextoMedioImportante"/>
 </LinearLayout>

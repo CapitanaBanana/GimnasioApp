@@ -7,7 +7,7 @@
         android:layout_gravity="bottom"
         android:background="@color/black"
         android:gravity="center_vertical"
-    android:layout_alignParentBottom="true"
+        android:layout_alignParentBottom="true"
         android:orientation="horizontal">
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,47 +19,35 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:orientation="horizontal">
-    <Button
+        <ImageView
             android:id="@+id/menuPrincipal"
-            style="@style/Icono"
             android:layout_width="0dp"
-            android:layout_height="45dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/home2"
+            android:scaleType="fitCenter"
+            app:tint="@color/casi_blanco"
             android:layout_weight="1"
-            android:background="#00FBFBFB"
-            app:icon="@drawable/home2"
-            app:iconGravity="textStart"
-            app:iconPadding="0dp"
-            app:iconSize="40dp"
-            app:strokeColor="#000000"
             android:onClick="menuPrincipal" />
 
-        <Button
-            android:id="@+id/verUsuarios"
-            style="@style/Icono"
+        <ImageView
+            android:id="@+id/listarAlumnos"
             android:layout_width="0dp"
-            android:layout_height="45dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/list"
+            android:scaleType="fitCenter"
+            app:tint="@color/casi_blanco"
             android:layout_weight="1"
-            android:background="#00FBFBFB"
-            android:onClick="listarAlumnos"
-            app:icon="@drawable/list"
-            app:iconGravity="textStart"
-            app:iconPadding="0dp"
-            app:iconSize="40dp"
-            app:strokeColor="#000000" />
+            android:onClick="listarAlumnos" />
 
-        <Button
+        <ImageView
             android:id="@+id/verDeudores"
-            style="@style/Icono"
             android:layout_width="0dp"
-            android:layout_height="45dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/dollar"
+            android:scaleType="fitCenter"
+            app:tint="@color/casi_blanco"
             android:layout_weight="1"
-            android:background="#00FBFBFB"
-            android:onClick="listarDeudores"
-            app:icon="@drawable/dollar"
-            app:iconPadding="0dp"
-            app:iconGravity="textStart"
-            app:iconSize="40dp"
-            app:strokeColor="#000000" />
+            android:onClick="listarDeudores" />
     </LinearLayout>
 
 </RelativeLayout>

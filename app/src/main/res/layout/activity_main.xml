@@ -8,6 +8,8 @@
     android:background="@drawable/img2"
     tools:context=".activities.MainActivity">
 
+
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -15,11 +17,25 @@
         android:background="@color/filtro_rojo_fondo">
     </RelativeLayout>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/ajustes"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/settings"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="25dp"
+            android:layout_marginRight="10dp"
+            android:scaleType="fitCenter"
+            app:tint="@color/casi_blanco"
+            android:onClick="ajustes" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="40dp"
             android:gravity="center"
             android:orientation="horizontal">
 
@@ -28,89 +44,87 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Registrar cuota"
-                android:textColor="#F1F1F1"
-                android:textSize="32sp"
-                android:textStyle="bold" />
+                style="@style/TextViewTitulo"
+                />
 
         </LinearLayout>
 
-        <LinearLayout
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="220dp"
+        android:orientation="vertical"
+        android:paddingTop="28dp">
+
+        <SearchView
+            android:id="@+id/busqueda"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="220dp"
-            android:orientation="vertical"
-            android:paddingTop="28dp">
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="@color/gris_traslucido"
+            style="@style/SearchView" />
 
-            <SearchView
-                android:id="@+id/busqueda"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/rounded_corners"
-                android:backgroundTint="@color/casi_negro"
-                android:iconifiedByDefault="false"
-                android:queryHint="Buscar" />
+        <ListView
+            android:id="@+id/listView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:visibility="gone" />
 
-            <ListView
-                android:id="@+id/listView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
-                android:visibility="gone" />
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
 
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/DosVeces"
+                style="@style/ButtonSeleccion"
+                android:layout_width="90dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="10dp"
+                android:padding="5dp"
+                android:text="Dos veces"
+                android:textAlignment="center" />
 
-            <RadioGroup
-                android:id="@+id/radioGroup"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal">
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/TresVeces"
+                style="@style/ButtonSeleccion"
+                android:layout_width="90dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="10dp"
+                android:padding="5dp"
+                android:text="Tres veces"
+                android:textAlignment="center" />
 
-                <androidx.appcompat.widget.AppCompatRadioButton
-                    android:id="@+id/DosVeces"
-                    style="@style/ButtonStyleTipoCuota"
-                    android:layout_width="90dp"
-                    android:layout_height="50dp"
-                    android:layout_marginEnd="10dp"
-                    android:padding="5dp"
-                    android:text="Dos veces"
-                    android:textAlignment="center" />
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/Libre"
+                style="@style/ButtonSeleccion"
+                android:layout_width="90dp"
+                android:layout_height="50dp"
+                android:padding="5dp"
+                android:text="Libre"
+                android:textAlignment="center" />
 
-                <androidx.appcompat.widget.AppCompatRadioButton
-                    android:id="@+id/TresVeces"
-                    style="@style/ButtonStyleTipoCuota"
-                    android:layout_width="90dp"
-                    android:layout_height="50dp"
-                    android:layout_marginEnd="10dp"
-                    android:padding="5dp"
-                    android:text="Tres veces"
-                    android:textAlignment="center" />
+        </RadioGroup>
 
-                <androidx.appcompat.widget.AppCompatRadioButton
-                    android:id="@+id/Libre"
-                    style="@style/ButtonStyleTipoCuota"
-                    android:layout_width="90dp"
-                    android:layout_height="50dp"
-                    android:padding="5dp"
-                    android:text="Libre"
-                    android:textAlignment="center" />
-
-            </RadioGroup>
-
-            <Button
-                style="@style/Button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="30dp"
-                android:layout_weight="1"
-                android:hapticFeedbackEnabled="true"
-                android:onClick="registrarCuota"
-                android:text="Agregar cuota" />
-        </LinearLayout>
+        <Button
+            style="@style/Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:layout_weight="1"
+            android:hapticFeedbackEnabled="true"
+            android:onClick="registrarCuota"
+            android:text="Agregar cuota" />
+    </LinearLayout>
 
     <include
         android:id="@+id/navigation_menu"

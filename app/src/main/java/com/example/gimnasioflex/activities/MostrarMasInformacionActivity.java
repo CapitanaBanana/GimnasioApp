@@ -24,7 +24,6 @@ import java.util.ArrayList;
 public class MostrarMasInformacionActivity extends AppCompatActivity {
     private Persona persona;
     private DBHelper db;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,11 +32,14 @@ public class MostrarMasInformacionActivity extends AppCompatActivity {
         if (intent != null && intent.hasExtra(EXTRA_PERSONA)) {
             persona = (Persona) intent.getSerializableExtra(EXTRA_PERSONA);
             // Mostrar datos
+            db = new DBHelper(this);
             TextView textView = findViewById(R.id.NombreCompleto);
             textView.setText(String.format("%s %s", persona.getNom(), persona.getApe()));
             TextView textView1 = findViewById(R.id.FechaRegistro);
-            textView1.setText(persona.getRegistro().format(formatter));
-            db = new DBHelper(this);
+            textView1.setText("Fecha de registro: "+persona.getRegistro().format(formatter));
+            TextView textView2 = findViewById(R.id.UltimaCuota);
+            persona.setCuotas(db.fetchCuotasDeCliente(persona.getDni()));
+            textView2.setText("Cuota vence el: "+persona.getUltimaCuota().getFin().format(formatter));
         }
     }
 

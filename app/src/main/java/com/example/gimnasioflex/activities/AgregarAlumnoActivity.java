@@ -34,7 +34,7 @@ public class AgregarAlumnoActivity extends AppCompatActivity {
         String nom = nomTxt.getText().toString();
         String ape = apeTxt.getText().toString();
         String dni = dniTxt.getText().toString();
-        if (dni.length() == 8) {
+        if (dni.length() == 8 & !ape.isEmpty() & !nom.isEmpty()){
             Persona p = db.getPersonaPorDNI(dni);
             if (p != null) {
                 Toast.makeText(AgregarAlumnoActivity.this, "El dni ingresado ya está en el sistema!", Toast.LENGTH_SHORT).show();
@@ -42,16 +42,17 @@ public class AgregarAlumnoActivity extends AppCompatActivity {
             } else {
                 boolean check = db.addClient(nom, ape, dni);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    db.addCuota(dni, LocalDate.now(), LocalDate.now(), "Libre",0);
+                    db.addCuota(dni, LocalDate.now(), LocalDate.now(), "Libre", 0);
                 }
-                if (check)
+                if (check) {
                     Toast.makeText(AgregarAlumnoActivity.this, "Cliente guardado con exito!", Toast.LENGTH_SHORT).show();
-                else
+                    finish();
+                } else
                     Toast.makeText(AgregarAlumnoActivity.this, "El cliente no se pudo guardar!", Toast.LENGTH_SHORT).show();
                 finish();
             }
         } else
             Toast.makeText(AgregarAlumnoActivity.this, "Datos Incorrectos", Toast.LENGTH_SHORT).show();
-        finish();
+
     }
 }

@@ -31,9 +31,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
-                    android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
-                    android:textColor="@color/casi_blanco"
-                    android:textSize="20dp"
+                    style="@style/TextViewTextoMedioImportante"
                     tools:text="@tools:sample/lorem" />
                 <TextView
                     android:id="@+id/DiasVencida"
@@ -41,10 +39,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
-                    android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+                    style="@style/TextViewTextoMedioImportante"
+                    android:text="12"
+                    android:textStyle="bold"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="20dp"
-                    tools:text="@tools:sample/lorem" />
+                    />
             </RelativeLayout>
 
             <TextView
@@ -52,8 +51,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"
                 android:ellipsize="end"
-                android:textColor="@color/casi_blanco"
-                android:textSize="15dp"
+                style="@style/TextViewTextoNoImportante"
                 tools:text="@tools:sample/lorem/random" />
         </LinearLayout>
     </LinearLayout>

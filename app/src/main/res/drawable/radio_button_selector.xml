@@ -1,7 +1,7 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_checked="true">
         <shape android:shape="rectangle">
-            <solid android:color="@color/filtro_rojo" />
+            <solid android:color="@color/filtro_rojo_fondo" />
             <corners android:radius="8dp" />
         </shape>
     </item>

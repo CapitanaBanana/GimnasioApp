@@ -148,4 +148,9 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
         this.overridePendingTransition(0, 0);
     }
+    public void ajustes(View view) {
+        Intent intent = new Intent(this, MenuConfiguracionActivity.class);
+        startActivity(intent);
+        this.overridePendingTransition(0, 0);
+    }
 }

@@ -94,9 +94,9 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public ArrayList<Cuota> fetchCuotas() {
+    public ArrayList<Cuota> fetchCuotasDeCliente(String dni) {
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT ClienteFK,Inicio,Fin,Tipo,Precio FROM " + TABLE_NAME_CUOTAS, null);
+        Cursor cursor = db.rawQuery("SELECT ClienteFK,Inicio,Fin,Tipo,Precio FROM " + TABLE_NAME_CUOTAS+ " WHERE ClienteFK = '" + dni + "'", null);
         ArrayList<Cuota> arrayList = new ArrayList<>();
         while (cursor.moveToNext()) {
             Cuota c;
@@ -166,4 +166,5 @@ public class DBHelper extends SQLiteOpenHelper {
             return false;
         }
     }
+    
 }
